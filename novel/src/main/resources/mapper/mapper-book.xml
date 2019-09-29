@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace用于与DAO层的接口类进行绑定,这样我们无需实现DAO层的接口类,其接口类就能够自动的找到相关的SQL语句进行绑定实现-->
+<mapper namespace="com.wang.novel.dao.BookDao">
+    <select id="selectBookAll" resultType="com.wang.novel.entity.Book" >
+        select b.*,COUNT(c.book_id) FROM book b left  join chapter c on b.id = c.book_id GROUP BY b.id
+    </select>
+    <select id="selectBooksByName" resultType="com.wang.novel.entity.Book" parameterType="String">
+        select * from book where name = #{name}
+    </select>
+</mapper>

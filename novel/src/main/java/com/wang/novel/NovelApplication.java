@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.wang.novel.dao")
-public class NovelApplication  {
+public class NovelApplication {
 
 
     public static void main(String[] args) {

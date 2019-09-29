@@ -13,6 +13,9 @@ public class ShellTest {
         while(d>1){
             d=d/2;
             for(int i=0;i<d;i++){
+
+
+
                 for(int j=i+d;j<integers.length;j=j+d){
                     int t = integers[j];
                     int x;

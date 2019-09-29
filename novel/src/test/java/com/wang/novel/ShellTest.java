@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class ShellTest {
     @Test
     public void Shell(){
-        Integer[] integers = {1,5};
+        Integer[] integers = {1 ,5};
         int d = integers.length;
         while(d>1){
             d=d/2;

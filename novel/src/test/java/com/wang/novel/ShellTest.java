@@ -2,14 +2,13 @@ package com.wang.novel;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.List;
 
 public class ShellTest {
     @Test
     public void Shell(){
-        Integer[] integers = {5,2,1,3,9,8,6,7};
+        Integer[] integers = {1,5};
         int d = integers.length;
         while(d>1){
             d=d/2;

@@ -1,4 +1,4 @@
-package wang.springcloud.frist;
+package com.wang.cloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @EnableEurekaServer
 @SpringBootApplication
-public class FristApplication {
+public class CloudApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FristApplication.class, args);
+        SpringApplication.run(CloudApplication.class, args);
     }
 
 }

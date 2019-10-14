@@ -200,3 +200,4 @@ Verify the connector's configuration, identify and stop any process that's liste
 2019-10-14 13:16:32 INFO  [RMI TCP Connection(1)-10.80.10.149] org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525) - Initializing Servlet 'dispatcherServlet'
 2019-10-14 13:16:32 INFO  [RMI TCP Connection(1)-10.80.10.149] org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547) - Completed initialization in 6 ms
 2019-10-14 13:17:31 INFO  [Eureka-EvictionTimer] com.netflix.eureka.registry.AbstractInstanceRegistry$EvictionTask.run(AbstractInstanceRegistry.java:1250) - Running the evict task with compensationTime 0ms
+2019-10-14 13:18:31 INFO  [Eureka-EvictionTimer] com.netflix.eureka.registry.AbstractInstanceRegistry$EvictionTask.run(AbstractInstanceRegistry.java:1250) - Running the evict task with compensationTime 0ms

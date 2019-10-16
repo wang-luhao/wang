@@ -3,7 +3,7 @@ package com.wang.novelweb.Entity;
 
 import java.util.List;
 
-public class novelUser {
+public class NovelUser {
     private int uid;
     private String uname;
     private String uphone;

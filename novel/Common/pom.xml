@@ -13,5 +13,8 @@
     <name>common</name>
     <description>公共部分</description>
 
+    <dependencies>
 
+
+    </dependencies>
 </project>

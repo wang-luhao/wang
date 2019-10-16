@@ -1,19 +1,19 @@
 package com.wang.service.Config;
 
-import javax.sql.DataSource;
-
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.support.http.StatViewServlet;
+import com.alibaba.druid.support.http.WebStatFilter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.support.http.StatViewServlet;
-import com.alibaba.druid.support.http.WebStatFilter;
+import javax.sql.DataSource;
 
 @Configuration
 public class DruidConfig {
+
     @Bean
     public ServletRegistrationBean<StatViewServlet> druidServlet() {// 主要实现web监控的配置处理
         ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(
@@ -35,7 +35,7 @@ public class DruidConfig {
         return filterRegistrationBean;
     }
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConfigurationProperties(prefix = "spring.druid.datasource")
     public DataSource druidDataSource() {
         return new DruidDataSource();
     }

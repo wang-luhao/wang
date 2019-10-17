@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title th:text="首页+'+'+${session.user}">首页</title>
 </head>
 <script>
-    $
+
 </script>
 <body>
-
+<p th:text="${session.user}"></p>
 </body>
 </html>

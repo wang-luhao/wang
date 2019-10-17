@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.Map;
+
 
 @Log4j
 @Controller
@@ -38,11 +41,14 @@ public class LoginController {
     }
 
     @RequestMapping("/login.action")
-    public String LoginAction(@RequestParam String uphone,@RequestParam(value = "upassword",defaultValue = "") String upassword){
+    public String LoginAction(@RequestParam String uphone,
+                              @RequestParam(value = "upassword",defaultValue = "") String upassword,
+                              HttpSession session){
         NovelUser novelUser = novelUserService.LoginCheck(uphone,upassword);
         if(null == novelUser){
             return "redirect:login";
         }
+        session.setAttribute("user",novelUser.getUname());
         return "redirect:index";
     }
 }

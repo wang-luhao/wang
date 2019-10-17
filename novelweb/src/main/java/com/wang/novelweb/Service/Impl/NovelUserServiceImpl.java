@@ -12,8 +12,12 @@ import java.util.Map;
 @Service
 public class NovelUserServiceImpl implements NovelUserService {
 
-    @Autowired
+
     private NovelUserMapper novelUserMapper;
+    @Autowired
+    public void setNovelUserMapper(NovelUserMapper novelUserMapper) {
+        this.novelUserMapper = novelUserMapper;
+    }
 
     @Override
     public NovelUser LoginCheck(String phone, String password) {

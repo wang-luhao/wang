@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://v4.bootcss.com/docs/4.3/examples/sign-in/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -14,7 +14,7 @@
     <form class="form-signin" action="/login.action" id="login">
   <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
   <label for="inputPhone" class="sr-only">Phone</label>
-  <input  id="inputPhone" name="uphone"  class="form-control" placeholder="Email address" required="" autofocus="">
+  <input  id="inputPhone" th:value = "${session.uphone1}" name="uphone"  class="form-control" placeholder="Phone number" required="" autofocus="">
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="upassword" id="inputPassword" class="form-control" placeholder="Password" required="">
   <div class="checkbox mb-3">
@@ -24,6 +24,7 @@
   </div>
   <button id="login_btn" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
+    <p th:value="${session.uphone1}">123</p>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
     </script>
     <script>

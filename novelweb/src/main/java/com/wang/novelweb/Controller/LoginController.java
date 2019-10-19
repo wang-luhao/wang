@@ -46,6 +46,7 @@ public class LoginController {
                               HttpSession session){
         NovelUser novelUser = novelUserService.LoginCheck(uphone,upassword);
         if(null == novelUser){
+            session.setAttribute("uphone1",uphone);
             return "redirect:login";
         }
         session.setAttribute("user",novelUser.getUname());

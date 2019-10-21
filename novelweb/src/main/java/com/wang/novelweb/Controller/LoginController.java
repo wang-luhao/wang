@@ -40,13 +40,15 @@ public class LoginController {
         return "login.html";
     }
 
+
     @RequestMapping("/login.action")
     public String LoginAction(@RequestParam String uphone,
                               @RequestParam(value = "upassword",defaultValue = "") String upassword,
                               HttpSession session){
         NovelUser novelUser = novelUserService.LoginCheck(uphone,upassword);
         if(null == novelUser){
-            session.setAttribute("uphone1",uphone);
+            session.setAttribute("uphone1","1234");
+            System.out.println(uphone);
             return "redirect:login";
         }
         session.setAttribute("user",novelUser.getUname());

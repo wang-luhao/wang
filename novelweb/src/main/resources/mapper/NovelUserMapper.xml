@@ -8,4 +8,6 @@
     <select id="queryByUserNameAndTypes" resultType="int" parameterType="map">
         select * from nuser where uphone=#{phone} and upassword = #{password}
     </select>
+
+
 </mapper>

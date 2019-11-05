@@ -25,4 +25,8 @@ public class UserEntity implements Serializable {
 	 */
 	private String password;
 
+	/**
+	 * 授权
+	 */
+	private String Perms;
 }

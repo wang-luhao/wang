@@ -1,4 +1,4 @@
-package com.wang.novelweb;
+package com.wang.novelweb.Config;
 
 import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Bean;

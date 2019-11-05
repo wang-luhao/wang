@@ -1,10 +1,19 @@
 package com.wang.novelweb.Entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+
 public class Novel {
+    @ApiModelProperty(value = "用户名")
     private int nid;
+    @ApiModelProperty(value = "用户名")
     private String nname;
+    @ApiModelProperty(value = "用户名")
     private String nauthor;
+    @ApiModelProperty(value = "用户名")
     private String ntype;
+    @ApiModelProperty(value = "用户名")
     private String nurl;
 
     public int getNid() {

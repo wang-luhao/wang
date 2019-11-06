@@ -2,20 +2,18 @@ package com.wang.novelweb.Entity;
 
 
 
-import java.io.Serializable;
-import java.util.Date;
+
 import lombok.Data;
 
 
 @Data
-public class UserEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class UserEntity  {
 
 	/**
 	 * 用户id
 	 */
 
-	private String id;
+	private int id;
 	/**
 	 * 用户名
 	 */
@@ -28,5 +26,5 @@ public class UserEntity implements Serializable {
 	/**
 	 * 授权
 	 */
-	private String Perms;
+
 }

@@ -3,12 +3,9 @@
 
 <mapper namespace="com.wang.novelweb.Mapper.UserDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.wang.novelweb.Entity.UserEntity" id="userMap">
-        <result property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="password" column="password"/>
-    </resultMap>
 
+    <select id="findUser" parameterType="String" resultType="com.wang.novelweb.Entity.UserEntity">
+        select id,name,password from user where name = #{username};
+    </select>
 
 </mapper>

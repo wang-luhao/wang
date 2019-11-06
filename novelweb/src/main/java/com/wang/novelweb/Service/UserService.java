@@ -6,6 +6,6 @@ import com.wang.novelweb.Entity.UserEntity;
 public interface UserService {
 
 
-    UserEntity findUser(UserEntity realUser);
+    UserEntity findUser(String username);
 }
 

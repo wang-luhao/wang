@@ -1,11 +1,6 @@
 package com.wang.novelweb.Controller;
 
 
-
-
-
-
-import com.wang.novelweb.Entity.UserEntity;
 import com.wang.novelweb.Service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @Api(tags = "这个类的标签")
@@ -40,13 +34,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @ResponseBody
-    @RequestMapping("/logintest")
-    public String LoginTest(String username,String password,Map<String,Object> map){
-        UserEntity userEntity = userService.findUser(username);
-        System.out.println("LoginAction" + userEntity.getName());
-        return userEntity.getName();
-    }
 
     @RequestMapping("/login")
     public String toLogin(){
@@ -54,22 +41,41 @@ public class LoginController {
     }
 
     @RequestMapping("success")
-    public String toSuccess(){
+    public String toSuccess(String username,Map<String,Object> map){
+        map.put("username",username);
         return "index";
     }
 
+
+    @RequestMapping(value = "/random",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> RandomNum(){
+        Map<String,Object> resultMap = new HashMap<>();
+        Random rl = new Random();
+        List<Integer> list = new ArrayList<Integer>();
+        while(list.size()!=6){
+            int num = rl.nextInt(33)+1;
+            if(!list.contains(num)){
+                list.add(num);
+            }
+        }
+        resultMap.put("红色",list);
+        Random bl = new Random();
+        resultMap.put("蓝色",bl.nextInt(16)+1);
+        return  resultMap;
+    }
+
+
     @RequestMapping(value="/ajaxLogin",method= RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> submitLogin(@RequestParam(value = "nickname") String username, @RequestParam(value = "pswd") String password) {
+    public Map<String,Object> submitLogin(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
-        resultMap.put("登录","123");
+        System.out.println(username);
         try {
-
             UsernamePasswordToken token = new UsernamePasswordToken(username,password,"login");
             SecurityUtils.getSubject().login(token);
             resultMap.put("status", 200);
             resultMap.put("message", "登录成功");
-
         } catch (Exception e) {
             resultMap.put("status", 500);
             resultMap.put("message", e.getMessage());
@@ -84,14 +90,12 @@ public class LoginController {
         if(username == null||password == null){
             return "login";
         }
-        System.out.println("LoginAction" + username);
-
         UsernamePasswordToken token = new UsernamePasswordToken(username,password,"login");
         Subject currentUser = SecurityUtils.getSubject();
         try{
             currentUser.login(token);
             if(currentUser.isAuthenticated()){
-                map.put("username","username");
+                map.put("username",username);
                 return "index";
             }else{
                 token.clear();

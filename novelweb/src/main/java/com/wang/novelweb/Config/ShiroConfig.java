@@ -39,9 +39,11 @@ public class ShiroConfig {
         //拦截
         Map<String,String> filterChainMap = new LinkedHashMap<>();
         filterChainMap.put("/logout","logout");
+        filterChainMap.put("/lib/**","anon");
         filterChainMap.put("/login","anon");
         filterChainMap.put("/ajaxLogin", "anon");
         filterChainMap.put("/login.action", "anon");
+        filterChainMap.put("/random","anon");
         filterChainMap.put("/**","authc");
 
         shiroFilterFactoryBean.setLoginUrl("/login");

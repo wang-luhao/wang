@@ -5,6 +5,7 @@ import com.wang.novelweb.Service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -75,13 +76,15 @@ public class LoginController {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
         System.out.println(username);
         try {
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password, "login");
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             SecurityUtils.getSubject().login(token);
             resultMap.put("status", 200);
             resultMap.put("message", "登录成功");
+            log.info(username+"登录成功");
         } catch (Exception e) {
             resultMap.put("status", 500);
             resultMap.put("message", e.getMessage());
+            log.info(username+":"+e);
         }
         return resultMap;
     }
@@ -97,17 +100,17 @@ public class LoginController {
         Subject currentUser = SecurityUtils.getSubject();
         try {
             currentUser.login(token);
-            System.out.println("密码正确");
+            log.info("密码正确");
         } catch (IncorrectCredentialsException ice) {
-            System.out.println("IncorrectCredentialsException密码不正确");
+            log.info("IncorrectCredentialsException密码不正确");
             map.put("msg", "密码不正确");
             return "login";
         } catch (UnknownAccountException uae) {
-            System.out.println("UnknownAccountException账号不存在");
+           log.info("UnknownAccountException账号不存在");
             map.put("msg", "账号不存在");
             return "login";
         } catch (AuthenticationException ae) {
-            System.out.println("AuthenticationException状态不正常");
+            log.info("AuthenticationException状态不正常");
             map.put("msg", "状态不正常");
             return "login";
         }

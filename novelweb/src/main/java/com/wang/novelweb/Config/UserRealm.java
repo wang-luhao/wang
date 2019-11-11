@@ -3,6 +3,7 @@ package com.wang.novelweb.Config;
 
 import com.wang.novelweb.Entity.UserEntity;
 import com.wang.novelweb.Service.UserService;
+import lombok.extern.log4j.Log4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -10,11 +11,12 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import sun.rmi.runtime.Log;
 
 
 import javax.annotation.Resource;
 
-
+@Log4j
 public class UserRealm extends AuthorizingRealm {
 
     @Resource
@@ -43,7 +45,7 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
         // TODO Auto-generated method stub
-        System.out.println("授权");
+        log.info("授权");
         //获取当前登录用户
         String username = (String)arg0.getPrimaryPrincipal();
         UserEntity userEntity = UserService.findUser(username);

@@ -14,7 +14,7 @@
 
 <div class="login">
     <h1>Login</h1>
-    <form action="/login.action" method="post">
+    <form method="post">
         <label>
             <input id="username" type="text" name="username" placeholder="用户名" required="required"/>
         </label>
@@ -24,35 +24,36 @@
         <button id="login" class="btn btn-primary btn-block btn-large">登录</button>
     </form>
 </div>
-<!--<script type="text/javascript">-->
-<!--    $('#login').click(function () {-->
-<!--        var username = $("#username").val();-->
-<!--        var password = $("#password").val();-->
-<!--        if (username === null){-->
 
-<!--        }-->
-<!--        else if(password === null){-->
+<script type="text/javascript">
+    $('#login').click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if (username === null){
 
-<!--        }-->
-<!--        else{-->
-<!--            $.ajax({-->
-<!--                type: "post",-->
-<!--                url: "/ajaxLogin",-->
-<!--                data: {username:username, password:password},-->
-<!--                success: function(data){-->
-<!--                    if (data.status === 200){-->
-<!--                        window.location.href="/success?username="+$("#username").val();-->
-<!--                    }else if (data.status === 500){-->
-<!--                        alert("账号或密码错误");-->
-<!--                        location.reload();-->
-<!--                    }else{-->
-<!--                        alert("请求失败");-->
-<!--                    }-->
-<!--                }-->
-<!--            });-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
+        }
+        else if(password === null){
+
+        }
+        else{
+            $.ajax({
+                type: "post",
+                url: "/ajaxLogin",
+                data: {username:username, password:password},
+                success: function(data){
+                    if (data.status === 200){
+                        window.location.href="/success?username="+$("#username").val();
+                    }else if (data.status === 500){
+                        alert(data.message);
+                        location.reload();
+                    }else{
+                        alert("请求失败");
+                    }
+                }
+            });
+        }
+    });
+</script>
 </body>
 
 </html>

@@ -14,7 +14,6 @@ public class BookEntity implements Serializable {
     /**
      * 书id
      */
-
     private String id;
     /**
      * 书名

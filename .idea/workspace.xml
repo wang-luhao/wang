@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="991c8266-3846-4882-b29d-bbd67f390633" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/cloud/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/demo/src/main/java/com/example/demo/Controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/demo/src/main/java/com/example/demo/Controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/demo/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/demo/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/DruidConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/DruidConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Config/UserRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/ChapterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/ChapterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/SaveUserBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/SaveUserBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/ChapterEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/ChapterEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/SaveUserBookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/SaveUserBookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/BookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/ChapterDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/ChapterDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/SaveUserBookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/SaveUserBookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Mapper/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/ChapterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/ChapterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/Impl/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/Impl/BookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/Impl/ChapterServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/Impl/ChapterServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/Impl/SaveUserBookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/Impl/SaveUserBookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/SaveUserBookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/java/com/wang/novelweb/Service/SaveUserBookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/log4j.properties" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/mapper/BookDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/mapper/BookDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/mapper/ChapterDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/mapper/ChapterDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/mapper/SaveUserBookDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/mapper/SaveUserBookDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/templates/lib/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/templates/lib/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/novelweb/src/main/resources/templates/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/novelweb/src/main/resources/templates/views/login.html" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1TS7wj9WRhzWGK5uLxmjCNlPhzf" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="991c8266-3846-4882-b29d-bbd67f390633" name="Default Changelist" comment="" />
+      <created>1573441882377</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1573441882377</updated>
+      <workItem from="1573441890315" duration="201000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

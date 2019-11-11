@@ -1,15 +1,10 @@
 package com.wang.novelweb.Controller;
 
 
-
 import com.wang.novelweb.Service.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
-
-
 
 
 @RestController
@@ -21,7 +16,6 @@ public class ChapterController {
     /**
      * 列表
      */
-
 
 
     /**

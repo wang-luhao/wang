@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wang.novelweb.Mapper.ChapterDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.wang.novelweb.Entity.ChapterEntity" id="chapterMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>

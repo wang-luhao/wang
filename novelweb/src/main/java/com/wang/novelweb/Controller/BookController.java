@@ -13,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
-
-
-
 @RestController
 @RequestMapping("generator/book")
 public class BookController {
@@ -28,9 +24,8 @@ public class BookController {
         this.bookService = bookService;
     }
 /**
-     * 列表
-     */
-
+ * 列表
+ */
 
 
     /**

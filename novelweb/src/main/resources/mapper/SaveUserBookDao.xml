@@ -3,7 +3,7 @@
 
 <mapper namespace="com.wang.novelweb.Mapper.SaveUserBookDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.wang.novelweb.Controller.SaveUserBookController" id="saveUserBookMap">
         <result property="bookId" column="book_id"/>
         <result property="userId" column="user_id"/>

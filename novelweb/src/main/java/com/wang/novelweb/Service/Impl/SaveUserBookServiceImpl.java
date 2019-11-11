@@ -4,10 +4,8 @@ import com.wang.novelweb.Service.SaveUserBookService;
 import org.springframework.stereotype.Service;
 
 
-
 @Service("saveUserBookService")
-public class SaveUserBookServiceImpl  implements SaveUserBookService {
-
+public class SaveUserBookServiceImpl implements SaveUserBookService {
 
 
 }

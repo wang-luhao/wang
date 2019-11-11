@@ -21,19 +21,18 @@ public class UserRealm extends AuthorizingRealm {
     private UserService UserService;
 
 
-
     //执行认证逻辑
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username = (String)token.getPrincipal();
-        if(username == null){
+        String username = (String) token.getPrincipal();
+        if (username == null) {
             return null;
         }
         UserEntity userEntity = UserService.findUser(username);
-        if(userEntity == null){
+        if (userEntity == null) {
             return null;
         }
-        return new SimpleAuthenticationInfo(userEntity,userEntity.getPassword(),getName());
+        return new SimpleAuthenticationInfo(userEntity, userEntity.getPassword(), getName());
 
 
     }
@@ -54,8 +53,6 @@ public class UserRealm extends AuthorizingRealm {
         simpleAuthorizationInfo.addStringPermission(user.getName());
         return simpleAuthorizationInfo;
     }
-
-
 
 
 }

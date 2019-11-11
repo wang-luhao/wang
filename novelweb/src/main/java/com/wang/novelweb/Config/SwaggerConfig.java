@@ -17,7 +17,7 @@ public class SwaggerConfig {
 
 
     @Bean
-    public Docket createRestApi () {
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
                 //使用注解
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
@@ -27,7 +27,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiInfo apiInfo () {
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //标题
                 .title("awifi备案平台RESTful APIs")

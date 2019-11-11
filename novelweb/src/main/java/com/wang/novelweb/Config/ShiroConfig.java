@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,8 +22,9 @@ public class ShiroConfig {
     public UserRealm getUserRealm() {
         return new UserRealm();
     }
+
     @Bean(name = "securityManager")
-    public SecurityManager securityManager(@Qualifier("userRealm")UserRealm userRealm){
+    public SecurityManager securityManager(@Qualifier("userRealm") UserRealm userRealm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm);
         return securityManager;
@@ -32,25 +34,26 @@ public class ShiroConfig {
      * 过滤器
      */
     @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager")SecurityManager securityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("securityManager") SecurityManager securityManager) {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //拦截
-        Map<String,String> filterChainMap = new LinkedHashMap<>();
-        filterChainMap.put("/logout","logout");
-        filterChainMap.put("/lib/**","anon");
-        filterChainMap.put("/login","anon");
+        Map<String, String> filterChainMap = new LinkedHashMap<>();
+        filterChainMap.put("/logout", "logout");
+        filterChainMap.put("/lib/**", "anon");
+        filterChainMap.put("/login", "anon");
         filterChainMap.put("/ajaxLogin", "anon");
         filterChainMap.put("/login.action", "anon");
-        filterChainMap.put("/random","anon");
-        filterChainMap.put("/**","authc");
+        filterChainMap.put("/random", "anon");
+        filterChainMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/success");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainMap);
         return shiroFilterFactoryBean;
     }
+
     @Bean
     @ConditionalOnMissingBean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {

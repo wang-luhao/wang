@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserDao {
-    UserEntity findUser(String  username);
+    UserEntity findUser(String username);
 }

@@ -27,7 +27,7 @@ import java.util.*;
 @Controller
 public class LoginController {
 
-    private UserService  userService;
+    private UserService userService;
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -36,43 +36,43 @@ public class LoginController {
 
 
     @RequestMapping("/login")
-    public String toLogin(){
+    public String toLogin() {
         return "login";
     }
 
     @RequestMapping("success")
-    public String toSuccess(String username,Map<String,Object> map){
-        map.put("username",username);
+    public String toSuccess(String username, Map<String, Object> map) {
+        map.put("username", username);
         return "index";
     }
 
 
-    @RequestMapping(value = "/random",method = RequestMethod.POST)
+    @RequestMapping(value = "/random", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> RandomNum(){
-        Map<String,Object> resultMap = new HashMap<>();
+    public Map<String, Object> RandomNum() {
+        Map<String, Object> resultMap = new HashMap<>();
         Random rl = new Random();
         List<Integer> list = new ArrayList<Integer>();
-        while(list.size()!=6){
-            int num = rl.nextInt(33)+1;
-            if(!list.contains(num)){
+        while (list.size() != 6) {
+            int num = rl.nextInt(33) + 1;
+            if (!list.contains(num)) {
                 list.add(num);
             }
         }
-        resultMap.put("红色",list);
+        resultMap.put("红色", list);
         Random bl = new Random();
-        resultMap.put("蓝色",bl.nextInt(16)+1);
-        return  resultMap;
+        resultMap.put("蓝色", bl.nextInt(16) + 1);
+        return resultMap;
     }
 
 
-    @RequestMapping(value="/ajaxLogin",method= RequestMethod.POST)
+    @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> submitLogin(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
+    public Map<String, Object> submitLogin(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
         System.out.println(username);
         try {
-            UsernamePasswordToken token = new UsernamePasswordToken(username,password,"login");
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password, "login");
             SecurityUtils.getSubject().login(token);
             resultMap.put("status", 200);
             resultMap.put("message", "登录成功");
@@ -86,36 +86,36 @@ public class LoginController {
 
     @ApiOperation(value = "描述接口作用", notes = "对接口的额外说明", response = String.class)
     @RequestMapping("/login.action")
-    public String LoginAction(String username,String password, Map<String,Object> map){
-        if(username == null||password == null){
+    public String LoginAction(String username, String password, Map<String, Object> map) {
+        if (username == null || password == null) {
             return "login";
         }
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password,"login");
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password, "login");
         Subject currentUser = SecurityUtils.getSubject();
-        try{
+        try {
             currentUser.login(token);
-            if(currentUser.isAuthenticated()){
-                map.put("username",username);
+            if (currentUser.isAuthenticated()) {
+                map.put("username", username);
                 return "index";
-            }else{
+            } else {
                 token.clear();
                 return "login";
             }
-        }catch (IncorrectCredentialsException ice){
+        } catch (IncorrectCredentialsException ice) {
             System.out.println("IncorrectCredentialsException密码不正确");
-            map.put("msg","密码不正确");
-        }catch (UnknownAccountException uae){
+            map.put("msg", "密码不正确");
+        } catch (UnknownAccountException uae) {
             System.out.println("UnknownAccountException账号不存在");
-            map.put("msg","账号不存在");
-        }catch (AuthenticationException ae){
+            map.put("msg", "账号不存在");
+        } catch (AuthenticationException ae) {
             System.out.println("AuthenticationException状态不正常");
-            map.put("msg","状态不正常");
+            map.put("msg", "状态不正常");
         }
         return "login";
     }
 
     @RequestMapping("logout")
-    public String logout(){
+    public String logout() {
         return "login";
     }
 }

@@ -1,8 +1,7 @@
 package com.wang.novelweb.Service;
 
 
-
-public interface ChapterService  {
+public interface ChapterService {
 
 }
 

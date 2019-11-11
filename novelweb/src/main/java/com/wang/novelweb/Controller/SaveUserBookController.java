@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
-
-
-
 @RestController
 @RequestMapping("generator/saveuserbook")
 public class SaveUserBookController {
@@ -20,7 +16,6 @@ public class SaveUserBookController {
     /**
      * 列表
      */
-
 
 
     /**

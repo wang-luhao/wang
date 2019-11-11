@@ -24,5 +24,6 @@ public class UserEntity {
     /**
      * 授权
      */
+    private String  permission;
 
 }

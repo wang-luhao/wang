@@ -10,6 +10,9 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String toLogin() {
         return "login";
     }
@@ -85,33 +88,33 @@ public class LoginController {
 
 
     @ApiOperation(value = "描述接口作用", notes = "对接口的额外说明", response = String.class)
-    @RequestMapping("/login.action")
+    @RequestMapping(value = "/login.action", method = RequestMethod.POST)
     public String LoginAction(String username, String password, Map<String, Object> map) {
         if (username == null || password == null) {
             return "login";
         }
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password, "login");
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject currentUser = SecurityUtils.getSubject();
         try {
             currentUser.login(token);
-            if (currentUser.isAuthenticated()) {
-                map.put("username", username);
-                return "index";
-            } else {
-                token.clear();
-                return "login";
-            }
+            System.out.println("密码正确");
         } catch (IncorrectCredentialsException ice) {
             System.out.println("IncorrectCredentialsException密码不正确");
             map.put("msg", "密码不正确");
+            return "login";
         } catch (UnknownAccountException uae) {
             System.out.println("UnknownAccountException账号不存在");
             map.put("msg", "账号不存在");
+            return "login";
         } catch (AuthenticationException ae) {
             System.out.println("AuthenticationException状态不正常");
             map.put("msg", "状态不正常");
+            return "login";
         }
-        return "login";
+        map.put("username",username);
+        Session session = currentUser.getSession();
+        session.setAttribute("user", userService.findUser(username));
+        return "index";
     }
 
     @RequestMapping("logout")

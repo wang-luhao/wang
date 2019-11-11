@@ -24,10 +24,10 @@ public class UserRealm extends AuthorizingRealm {
     //执行认证逻辑
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username = (String) token.getPrincipal();
-        if (username == null) {
+        if(token.getPrincipal()==null){
             return null;
         }
+        String username = (String) token.getPrincipal();
         UserEntity userEntity = UserService.findUser(username);
         if (userEntity == null) {
             return null;
@@ -43,16 +43,16 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
         // TODO Auto-generated method stub
-//        return null;
         System.out.println("授权");
         //获取当前登录用户
-        Subject subject = SecurityUtils.getSubject();
-        UserEntity user = (UserEntity) subject.getPrincipal();
+        String username = (String)arg0.getPrimaryPrincipal();
+        UserEntity userEntity = UserService.findUser(username);
         //给资源授权
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        simpleAuthorizationInfo.addStringPermission(user.getName());
+        simpleAuthorizationInfo.addStringPermission(userEntity.getPermission());
         return simpleAuthorizationInfo;
     }
+
 
 
 }

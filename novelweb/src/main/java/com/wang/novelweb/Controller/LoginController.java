@@ -1,22 +1,17 @@
 package com.wang.novelweb.Controller;
 
 
-import com.wang.novelweb.Service.UserService;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
-import lombok.extern.log4j.Log4j2;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,12 +26,6 @@ import java.util.*;
 @Controller
 public class LoginController {
 
-    private UserService userService;
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -45,8 +34,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/success", method = RequestMethod.GET)
-    public String toSuccess(String username, Map<String, Object> map) {
-        map.put("username", username);
+    public String toSuccess() {
         return "index";
     }
 
@@ -56,7 +44,7 @@ public class LoginController {
     public Map<String, Object> RandomNum() {
         Map<String, Object> resultMap = new HashMap<>();
         Random rl = new Random();
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
         while (list.size() != 6) {
             int num = rl.nextInt(33) + 1;
             if (!list.contains(num)) {
@@ -73,7 +61,7 @@ public class LoginController {
     @RequestMapping(value = "/ajaxLogin", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> submitLogin(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
-        Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+        Map<String, Object> resultMap = new LinkedHashMap<>();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject currentUser = SecurityUtils.getSubject();
         Session session = currentUser.getSession();

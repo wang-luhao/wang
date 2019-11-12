@@ -41,7 +41,7 @@
                 data: {username:username, password:password},
                 success: function(data){
                     if (data.status === 200){
-                        window.location.href="/success?username="+$("#username").val();
+                        window.location.href="/success";
                     }else if (data.status === 500){
                         alert(data.message);
                         location.reload();

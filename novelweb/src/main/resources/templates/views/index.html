@@ -25,6 +25,7 @@
             <th width="40">最后更新时间</th>
         </tr>
         </thead>
+        <tbody id="bookLists"></tbody>
     </table>
 </div>
 
@@ -54,12 +55,24 @@
             url: "/book/bookLists",
             data: {},
             success: function(data){
-                var tbody = document.createElement("tbody");
-                var obj = eval(data);
-                $('#bookLists').append(obj);
+                showBookList(data);
             }
         })
     });
+    function showBookList(data) {
+        var obj = eval(data);
+        var list = obj["bookLists"];
+        $.each(list, function (key, values) {
+            $("#bookLists").append(
+                "<tr><td><input type=\"checkbox\" name=\"\" value=\"\"></th>"
+                +"<td><a href='#'>"+values["name"]+"</ta></td>"
+                +"<td><a href='#'>"+values["imageUrl"]+"</ta></td>"
+                +"<td>"+values["author"]+"</td>"
+                +"<td>"+values["category"]+"</td>"
+                +"<td>"+values["updateTime"]+"</td></tr>"
+            );
+        });
+    }
 </script>
 </body>
 </html>

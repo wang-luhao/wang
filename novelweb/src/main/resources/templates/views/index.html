@@ -29,8 +29,9 @@
     </table>
 </div>
 
-<nav aria-label="Page navigation">
+<nav id="pageNum" aria-label="Page navigation">
     <ul class="pagination">
+        <li><a href="#">首页</a></li>
         <li>
             <a href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
@@ -46,6 +47,7 @@
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
+        <li><a href="#">末页</a></li>
     </ul>
 </nav>
 <script type="text/javascript" th:inline="javascript">
@@ -53,12 +55,30 @@
         $.ajax({
             type: "get",
             url: "/book/bookLists",
-            data: {},
+            data: {
+                pageNum:1,
+                pageSize:10},
             success: function(data){
                 showBookList(data);
             }
         })
     });
+    function to_page(pn) {
+        $.ajax({
+            url : "/book/bookLists",
+            data : {
+                pageNum:pn,
+                pageSize:10
+            },
+            type : "GET",
+            success : function(result) {
+                //console.log(result);
+                showBookList(result);
+                buildPage(result);
+            }
+        })
+
+    }
     function showBookList(data) {
         var obj = eval(data);
         var list = obj["bookLists"];
@@ -72,6 +92,9 @@
                 +"<td>"+values["updateTime"]+"</td></tr>"
             );
         });
+    }
+    function buildPage(data) {
+
     }
 </script>
 </body>

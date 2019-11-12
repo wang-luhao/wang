@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface BookService {
     List<BookEntity> bookLists();
+    List<BookEntity> bookLists(Integer pageNum,Integer pageSize);
+    Integer bookCount();
+
 }
 

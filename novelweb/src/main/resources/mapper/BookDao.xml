@@ -13,8 +13,13 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <select id="bookLists" resultMap="bookMap">
-        select * from book;
+
+
+    <select id="bookCount" resultType="integer">
+        select count(book.id) from book
     </select>
 
+    <select id="bookLists" resultMap="bookMap" parameterType="Map">
+        select * from book limit #{pageIndex},#{pageSize}
+    </select>
 </mapper>

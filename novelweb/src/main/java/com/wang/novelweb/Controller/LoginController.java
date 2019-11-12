@@ -44,7 +44,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("success")
+    @RequestMapping(value = "/success", method = RequestMethod.GET)
     public String toSuccess(String username, Map<String, Object> map) {
         map.put("username", username);
         return "index";
@@ -74,18 +74,31 @@ public class LoginController {
     @ResponseBody
     public Map<String, Object> submitLogin(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
         Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
-        System.out.println(username);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        Subject currentUser = SecurityUtils.getSubject();
+        Session session = currentUser.getSession();
         try {
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             SecurityUtils.getSubject().login(token);
-            resultMap.put("status", 200);
-            resultMap.put("message", "登录成功");
-            log.info(username+"登录成功");
-        } catch (Exception e) {
+        }catch (IncorrectCredentialsException ice) {
             resultMap.put("status", 500);
-            resultMap.put("message", e.getMessage());
-            log.info(username+":"+e);
+            resultMap.put("message", "密码不正确");
+            log.info(username+":"+"密码不正确");
+            return resultMap;
+        }catch (UnknownAccountException uae) {
+            resultMap.put("status", 500);
+            log.info(username+":"+"账号不存在");
+            resultMap.put("message", "账号不存在");
+            return resultMap;
+        } catch (AuthenticationException ae) {
+            resultMap.put("status", 500);
+            log.info(username+":"+"状态不正常");
+            resultMap.put("message", "状态不正常");
+            return resultMap;
         }
+        resultMap.put("status", 200);
+        resultMap.put("message", "登录成功");
+        session.setAttribute("user", username);
+        log.info(username+"登录成功");
         return resultMap;
     }
 
@@ -100,23 +113,23 @@ public class LoginController {
         Subject currentUser = SecurityUtils.getSubject();
         try {
             currentUser.login(token);
-            log.info("密码正确");
         } catch (IncorrectCredentialsException ice) {
-            log.info("IncorrectCredentialsException密码不正确");
+            log.info(username+":"+"密码不正确");
             map.put("msg", "密码不正确");
             return "login";
         } catch (UnknownAccountException uae) {
-           log.info("UnknownAccountException账号不存在");
+           log.info(username+":"+"账号不存在");
             map.put("msg", "账号不存在");
             return "login";
         } catch (AuthenticationException ae) {
-            log.info("AuthenticationException状态不正常");
+            log.info(username+":"+"状态不正常");
             map.put("msg", "状态不正常");
             return "login";
         }
+        log.info("密码正确");
         map.put("username",username);
         Session session = currentUser.getSession();
-        session.setAttribute("user", userService.findUser(username));
+        session.setAttribute("user", username);
         return "index";
     }
 

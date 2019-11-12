@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:text="首页+${username}">首页</title>
+    <title th:text="首页+${session.get('user')}">首页</title>
     <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
     <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../lib/js/jquery-3.4.1.min.js"></script>
@@ -13,39 +13,21 @@
 
 </style>
 <body>
-<button id="ceshi" type="button">测试</button>
-<table class="table table-border table-bordered table-hover table-bg table-sort">
-    <thead>
-    <tr class="text-c">
-        <th ><label>
-            <input type="checkbox" name="" value="">
-        </label></th>
-        <th width="30">门店编码</th>
-        <th width="50">app_food_code</th>
-        <th width="25">商品sku编码</th>
-        <th width="80">商品名称</th>
-        <th width="40">品类名称</th>
-        <th width="25">美团商品</th>
-        <th width="25">售罄</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="mt-20">
+    <table class="table table-border table-bordered table-hover table-bg table-sort">
+        <thead>
+        <tr class="text-c">
+            <th width="10"><input type="checkbox" name="" value=""></th>
+            <th width="30">书名</th>
+            <th width="50">封面</th>
+            <th width="25">作者</th>
+            <th width="80">种类</th>
+            <th width="40">最后更新时间</th>
+        </tr>
+        </thead>
+    </table>
+</div>
 
-            <tr class="text-c">
-                <td><label>
-                    <input type="checkbox" value="${xh.count}" name="cb[]">
-                </label></td>
-                <td>${list.app_poi_code}</td>
-                <td>${list.app_food_code}</td>
-                <td>${list.sku_id}</td>
-                <td>${list.name}</td>
-                <td>${list.category_name}</td>
-                <td>${list.percent}</td>
-                <td>${list.percent_spec}</td>
-            </tr>
-
-    </tbody>
-</table>
 <nav aria-label="Page navigation">
     <ul class="pagination">
         <li>
@@ -65,28 +47,18 @@
         </li>
     </ul>
 </nav>
-<script>
+<script type="text/javascript" th:inline="javascript">
     $(function () {
         $.ajax({
             type: "get",
             url: "/book/bookLists",
             data: {},
             success: function(data){
+                var tbody = document.createElement("tbody");
                 var obj = eval(data);
-                alert(obj["bookLists"][1]["category"]);
+                $('#bookLists').append(obj);
             }
         })
-    });
-    $('#ceshi').click(function () {
-            $.ajax({
-                type: "get",
-                url: "/book/bookLists",
-                data: {},
-                success: function(data){
-                    var obj = eval(data);
-                    alert(data["bookLists"][1]["category"]);
-                }
-            });
     });
 </script>
 </body>

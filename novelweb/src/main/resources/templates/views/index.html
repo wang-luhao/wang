@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="首页+${session.get('user')}">首页</title>
+    <script type="text/javascript" src="../lib/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
     <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../lib/js/jquery-3.4.1.min.js"></script>
 </head>
 <script></script>
 <style>
@@ -31,44 +31,35 @@
 
 <nav id="pageNum" aria-label="Page navigation">
     <ul class="pagination">
-        <li><a href="#">首页</a></li>
+        <li id="indexPage"><a href="#">首页</a></li>
         <li>
-            <a href="#" aria-label="Previous">
+            <a id="previous" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
+        <li id="page1"></li>
+        <li id="page2"></li>
+        <li id="page3" class="active"></li>
+        <li id="page4"></li>
+        <li id="page5"></li>
         <li>
-            <a href="#" aria-label="Next">
+            <a id="next" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>
-        <li><a href="#">末页</a></li>
+        <li id="lastPage"><a href="#">末页</a></li>
     </ul>
 </nav>
 <script type="text/javascript" th:inline="javascript">
     $(function () {
-        $.ajax({
-            type: "get",
-            url: "/book/bookLists",
-            data: {
-                pageNum:1,
-                pageSize:10},
-            success: function(data){
-                showBookList(data);
-            }
-        })
+        to_page(1);
     });
     function to_page(pn) {
         $.ajax({
             url : "/book/bookLists",
             data : {
                 pageNum:pn,
-                pageSize:10
+                pageSize:2
             },
             type : "GET",
             success : function(result) {
@@ -80,8 +71,9 @@
 
     }
     function showBookList(data) {
-        var obj = eval(data);
-        var list = obj["bookLists"];
+        let obj = eval(data);
+        let list = obj["bookLists"];
+        $("#bookLists").empty();
         $.each(list, function (key, values) {
             $("#bookLists").append(
                 "<tr><td><input type=\"checkbox\" name=\"\" value=\"\"></th>"
@@ -94,7 +86,48 @@
         });
     }
     function buildPage(data) {
-
+        let obj = eval(data);
+        let pageCount = obj["pageCount"];
+        let pageNum = obj["pageNum"];
+        let indexPage = $("#indexPage");
+        let lastPage = $("#lastPage");
+        let previous = $("#previous");
+        let next = $("#next");
+        indexPage.unbind('click').click(function () {
+            to_page(1);
+        });
+        lastPage.unbind('click').click(function () {
+            to_page(pageCount);
+        });
+        if (pageNum-1<1){
+            previous.hide();
+        }else {
+            previous.show();
+            previous.unbind('click').click(function () {
+                to_page(pageNum-1);
+            });
+        }
+        if (pageNum+1>pageCount){
+            next.hide();
+        }else {
+            next.show();
+            next.unbind('click').click(function () {
+                to_page(pageNum+1);
+            });
+        }
+        for (let i = 1; i <= 5; i++){
+            let page = $("#page"+i);
+            page.empty();
+            if (pageNum-3+i > pageCount || pageNum-3+i < 1){
+                page.hide();
+            }else{
+                page.show();
+                page.append($("<a></a>").append(pageNum-3+i).attr("href", "#"));
+                page.unbind('click').click(function () {
+                    to_page(pageNum-3+i);
+                });
+            }
+        }
     }
 </script>
 </body>

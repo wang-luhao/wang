@@ -8,6 +8,7 @@ import java.util.Map;
 import com.wang.novelweb.Entity.BookEntity;
 import com.wang.novelweb.Service.BookService;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class BookController {
      */
     @ResponseBody
     @RequestMapping(value = "bookListsAll", method = RequestMethod.GET)
+    @RequiresPermissions("user1")
     public Map bookLists(){
         Map<String,Object> resultMap = new HashMap<>();
         List<BookEntity> bookLists = bookService.bookLists();
@@ -36,6 +38,7 @@ public class BookController {
     }
     @ResponseBody
     @RequestMapping(value = "bookLists", method = RequestMethod.GET)
+    @RequiresPermissions("user")
     public Map bookLists(Integer pageNum,Integer pageSize){
         Map<String,Object> resultMap = new HashMap<>();
         int bookCount = bookService.bookCount();

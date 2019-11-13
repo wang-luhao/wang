@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:text="首页+${session.get('user')}">首页</title>
+    <title th:text="首页+${session.get('username')}">首页</title>
     <script type="text/javascript" src="../lib/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
     <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
@@ -13,6 +13,7 @@
 
 </style>
 <body>
+<a href="/book/bookListsAll">测试shiro</a>
 <div class="mt-20">
     <table class="table table-border table-bordered table-hover table-bg table-sort">
         <thead>

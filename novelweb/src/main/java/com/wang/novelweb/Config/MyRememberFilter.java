@@ -16,8 +16,8 @@ public class MyRememberFilter extends FormAuthenticationFilter {
     protected boolean isAccessAllowed(HttpServletRequest request, HttpServletResponse response, Object mappedValue){
         Subject subject=getSubject(request,response);
         if(!subject.isAuthenticated() && subject.isRemembered()){
-            if(subject.getSession().getAttribute("user")==null &&subject.getPrincipal()!=null){
-                subject.getSession().setAttribute("user",subject.getPrincipal());
+            if(subject.getSession().getAttribute("username")==null &&subject.getPrincipal()!=null){
+                subject.getSession().setAttribute("username",subject.getPrincipal());
             }
 
         }

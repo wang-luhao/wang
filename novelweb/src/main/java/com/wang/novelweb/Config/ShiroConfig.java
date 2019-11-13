@@ -16,14 +16,28 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 import javax.servlet.Filter;
 
 @Configuration
 public class ShiroConfig {
 
+    /**
+     * 403页面
+     */
+    @Bean
+    public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
+        SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
+        Properties properties = new Properties();
+        /*未授权处理页*/
+        properties.setProperty("UnauthorizedException", "403.html");
+        resolver.setExceptionMappings(properties);
+        return resolver;
+    }
     /**
      * 密码验证器
      */
@@ -117,10 +131,8 @@ public class ShiroConfig {
         filterChainMap.put("/ajaxLogin", "anon");
         filterChainMap.put("/login.action", "anon");
         filterChainMap.put("/random", "anon");
-        filterChainMap.put("/book/**", "anon");
-        filterChainMap.put("/chapter/**", "anon");
-        filterChainMap.put("/saveUserBook/**", "anon");
-        filterChainMap.put("/**", "user");
+        //filterChainMap.put("/saveUserBook/**", "anon");
+        filterChainMap.put("/**", "authc");
 
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/success");

@@ -47,8 +47,9 @@ public class UserRealm extends AuthorizingRealm {
         // TODO Auto-generated method stub
         log.info("授权");
         //获取当前登录用户
-        String username = (String)arg0.getPrimaryPrincipal();
-        UserEntity userEntity = UserService.findUser(username);
+        UserEntity userEntity= (UserEntity) arg0.getPrimaryPrincipal();
+//        String username = (String)arg0.getPrimaryPrincipal();
+//        UserEntity userEntity = UserService.findUser(username);
         //给资源授权
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         simpleAuthorizationInfo.addStringPermission(userEntity.getPermission());

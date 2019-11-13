@@ -76,7 +76,7 @@ public class BookController {
 
     @ResponseBody
     @RequestMapping("bookInfo")
-   // @RequiresPermissions("user")
+    @RequiresPermissions("user")
     public Map bookInfo(Integer bookId){
         UserEntity user = (UserEntity)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Map<String,Object> resultMap = new HashMap<>();

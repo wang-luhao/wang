@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("generator/saveuserbook")
+@RequestMapping("/saveUserBook")
 public class SaveUserBookController {
     @Autowired
     private SaveUserBookService saveUserBookService;

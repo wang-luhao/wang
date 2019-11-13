@@ -22,4 +22,8 @@
     <select id="bookLists" resultMap="bookMap" parameterType="Map">
         select * from book limit #{pageIndex},#{pageSize}
     </select>
+
+    <select id="bookInfoById" resultType="com.wang.novelweb.Entity.BookEntity" parameterType="integer">
+        select * from book where id = #{id}
+    </select>
 </mapper>

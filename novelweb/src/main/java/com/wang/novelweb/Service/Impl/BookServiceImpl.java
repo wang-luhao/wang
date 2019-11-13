@@ -37,4 +37,9 @@ public class BookServiceImpl implements BookService {
     public Integer bookCount() {
         return bookDao.bookCount();
     }
+
+    @Override
+    public BookEntity bookInfoById(Integer id) {
+        return bookDao.bookInfoById(id);
+    }
 }

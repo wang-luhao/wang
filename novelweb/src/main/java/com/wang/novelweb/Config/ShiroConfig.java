@@ -117,6 +117,8 @@ public class ShiroConfig {
         filterChainMap.put("/ajaxLogin", "anon");
         filterChainMap.put("/login.action", "anon");
         filterChainMap.put("/random", "anon");
+        filterChainMap.put("/book/**", "anon");
+        filterChainMap.put("/chapter/**", "anon");
         filterChainMap.put("/**", "user");
 
         shiroFilterFactoryBean.setLoginUrl("/login");

@@ -121,7 +121,7 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, Filter> filterMap=new LinkedHashMap<String,Filter>();
+        Map<String, Filter> filterMap=new LinkedHashMap<>();
         filterMap.put("MyRememberFilter",myRememberFilter());
         //拦截
         Map<String, String> filterChainMap = new LinkedHashMap<>();
@@ -131,6 +131,7 @@ public class ShiroConfig {
         filterChainMap.put("/ajaxLogin", "anon");
         filterChainMap.put("/login.action", "anon");
         filterChainMap.put("/random", "anon");
+        filterChainMap.put("/book/**", "anon");
         //filterChainMap.put("/saveUserBook/**", "anon");
         filterChainMap.put("/**", "authc");
 

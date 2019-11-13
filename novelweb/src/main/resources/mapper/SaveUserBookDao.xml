@@ -11,9 +11,19 @@
         <result property="isSave" column="is_save"/>
         <result property="bookName" column="name"/>
     </resultMap>
-<!--    List<SaveUserBookEntity> saveUserBookLists(Integer userId);-->
+    <update id="updateSaveUserBookChapter" parameterType="map">
+        update save_user_book set chapter_id = #{chapterId} where book_id = #{bookId} and user_id = #{userId}
+
+    </update>
+    <update id="updateSaveUserBookIsSave" parameterType="map">
+        update save_user_book set is_save = #{is_save} where book_id = #{bookId} and user_id = #{userId}
+    </update>
+
     <select id="saveUserBookLists" resultMap="saveUserBookMap" parameterType="integer">
         select * from save_user_book as a, book as b where a.user_id = #{userId} and a.book_id = b.id and a.is_save = 1
+    </select>
+    <select id="selectIsSave" resultType="java.lang.Integer" parameterType="map">
+        select is_save from save_user_book where  book_id = #{bookId} and user_id = #{userId}
     </select>
 
 </mapper>

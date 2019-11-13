@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
     UserEntity findUser(String username);
+    Integer findUserId(String username);
+    UserEntity findUserInfo(String username);
 }

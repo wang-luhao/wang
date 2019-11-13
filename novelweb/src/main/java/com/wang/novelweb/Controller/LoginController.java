@@ -85,7 +85,7 @@ public class LoginController {
         }
         resultMap.put("status", 200);
         resultMap.put("message", "登录成功");
-        session.setAttribute("user", username);
+        session.setAttribute("username", username);
         log.info(username+"登录成功");
         return resultMap;
     }

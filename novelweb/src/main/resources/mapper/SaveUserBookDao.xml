@@ -4,12 +4,16 @@
 <mapper namespace="com.wang.novelweb.Mapper.SaveUserBookDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.wang.novelweb.Controller.SaveUserBookController" id="saveUserBookMap">
+    <resultMap type="com.wang.novelweb.Entity.SaveUserBookEntity" id="saveUserBookMap">
         <result property="bookId" column="book_id"/>
         <result property="userId" column="user_id"/>
         <result property="chapterId" column="chapter_id"/>
         <result property="isSave" column="is_save"/>
+        <result property="bookName" column="name"/>
     </resultMap>
-
+<!--    List<SaveUserBookEntity> saveUserBookLists(Integer userId);-->
+    <select id="saveUserBookLists" resultMap="saveUserBookMap" parameterType="integer">
+        select * from save_user_book as a, book as b where a.user_id = #{userId} and a.book_id = b.id and a.is_save = 1
+    </select>
 
 </mapper>

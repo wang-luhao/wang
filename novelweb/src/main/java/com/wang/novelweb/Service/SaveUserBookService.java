@@ -1,7 +1,11 @@
 package com.wang.novelweb.Service;
 
 
-public interface SaveUserBookService {
+import com.wang.novelweb.Entity.SaveUserBookEntity;
 
+import java.util.List;
+
+public interface SaveUserBookService {
+    List<SaveUserBookEntity> saveUserBookLists(Integer userId);
 }
 

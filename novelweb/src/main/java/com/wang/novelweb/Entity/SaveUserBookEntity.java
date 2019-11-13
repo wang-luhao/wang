@@ -16,6 +16,11 @@ public class SaveUserBookEntity implements Serializable {
 
     private String bookId;
     /**
+     * 书名
+     */
+    private String bookName;
+
+    /**
      * 用户id
      */
     private String userId;

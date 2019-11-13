@@ -119,6 +119,7 @@ public class ShiroConfig {
         filterChainMap.put("/random", "anon");
         filterChainMap.put("/book/**", "anon");
         filterChainMap.put("/chapter/**", "anon");
+        filterChainMap.put("/saveUserBook/**", "anon");
         filterChainMap.put("/**", "user");
 
         shiroFilterFactoryBean.setLoginUrl("/login");

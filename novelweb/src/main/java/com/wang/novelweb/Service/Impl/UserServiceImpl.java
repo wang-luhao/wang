@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public UserEntity findUser(String username) {
         return userDao.findUser(username);
     }
+
+    @Override
+    public Integer findUserId(String username) {
+        return userDao.findUserId(username);
+    }
 }

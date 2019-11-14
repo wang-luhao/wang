@@ -5,7 +5,7 @@
 
 
     <select id="findUser" parameterType="String" resultType="com.wang.novelweb.Entity.UserEntity">
-        select name,password,permission from user where name = #{username};
+        select id, name,password,permission from user where name = #{username};
     </select>
 
     <select id="findUserId" parameterType="String" resultType="integer">

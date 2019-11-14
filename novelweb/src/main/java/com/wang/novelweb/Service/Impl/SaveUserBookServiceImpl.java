@@ -1,5 +1,6 @@
 package com.wang.novelweb.Service.Impl;
 
+import com.wang.novelweb.Entity.BookEntity;
 import com.wang.novelweb.Entity.SaveUserBookEntity;
 import com.wang.novelweb.Mapper.SaveUserBookDao;
 import com.wang.novelweb.Service.SaveUserBookService;
@@ -23,10 +24,6 @@ public class SaveUserBookServiceImpl implements SaveUserBookService {
         this.saveUserBookDao = saveUserBookDao;
     }
 
-    @Override
-    public List<SaveUserBookEntity> saveUserBookLists(Integer userId) {
-        return saveUserBookDao.saveUserBookLists(userId);
-    }
 
     @Override
     public Integer updateSaveUserBookChapter(Map map) {
@@ -44,5 +41,10 @@ public class SaveUserBookServiceImpl implements SaveUserBookService {
         map.put("bookId",bookId);
         map.put("userId",userId);
         return saveUserBookDao.selectIsSave(map);
+    }
+
+    @Override
+    public List<BookEntity> selectSaveBooks(Integer userId) {
+        return saveUserBookDao.selectSaveBooks(userId);
     }
 }

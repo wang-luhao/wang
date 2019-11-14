@@ -13,7 +13,7 @@
 
 </style>
 <body>
-<a href="/book/bookListsAll">测试shiro</a>
+<a  href="/user/userInfo" th:text="用户+${session.get('username')}">用户</a>
 <div class="mt-20">
     <table class="table table-border table-bordered table-hover table-bg table-sort">
         <thead>
@@ -76,9 +76,10 @@
         let list = obj["bookLists"];
         $("#bookLists").empty();
         $.each(list, function (key, values) {
+            let str = '/book/bookInfo?bookId=' + values["id"];
             $("#bookLists").append(
                 "<tr><td><input type=\"checkbox\" name=\"\" value=\"\"></th>"
-                +"<td><a href='#'>"+values["name"]+"</ta></td>"
+                +"<td><a href="+str+">"+values["name"]+"</ta></td>"
                 +"<td><a href='#'>"+values["imageUrl"]+"</ta></td>"
                 +"<td>"+values["author"]+"</td>"
                 +"<td>"+values["category"]+"</td>"

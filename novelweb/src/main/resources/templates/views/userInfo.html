@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="用户+${user['name']}"></title>
+</head>
+<body>
+<!-- map.put("user",userEntity);
+        map.put("saveBooks", saveUserBookService.selectSaveBooks(userEntity.getId()));
+-->
+<label th:text="${user.getName()}"></label>
+<label th:text="${user.getPassword()}"></label>
+
+<ul th:each="saveBook:${saveBooks}">
+    <li th:text="${saveBook['id']}">...</li>
+    <li th:text="${saveBook['name']}">...</li>
+    <li th:text="${saveBook['imageUrl']}">...</li>
+    <li th:text="${saveBook['author']}">...</li>
+    <li th:text="${saveBook['category']}">...</li>
+    <li th:text="${saveBook['updateTime']}">...</li>
+</ul>
+</body>
+</html>

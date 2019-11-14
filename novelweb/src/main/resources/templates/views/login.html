@@ -13,46 +13,18 @@
 
 <div class="login">
     <h1>Login</h1>
-    <form>
+    <form action="/login.action" method="post">
         <label>
-            <input id="username" type="text" name="username" placeholder="用户名" required="required"/>
+            <input id="username" type="text" name="username" placeholder="用户名" required="required" th:value="${username}"/>
         </label>
         <label>
             <input id="password" type="password" name="password" placeholder="密码" required="required"/>
         </label>
-        <button type="button" id="login" class="btn btn-primary btn-block btn-large">登录</button>
+        <label th:if="${msg} ne null" th:text="${msg}"></label>
+        <button type="submit" id="login" class="btn btn-primary btn-block btn-large">登录</button>
     </form>
 </div>
 
-<script type="text/javascript">
-    $('#login').click(function () {
-        var username = $("#username").val();
-        var password = $("#password").val();
-        if (username === null){
-            alert("请输入用户名");
-        }
-        else if(password === null){
-            alert("请输入密码");
-        }
-        else{
-            $.ajax({
-                type: "post",
-                url: "/ajaxLogin",
-                data: {username:username, password:password},
-                success: function(data){
-                    if (data.status === 200){
-                        window.location.href="/success";
-                    }else if (data.status === 500){
-                        alert(data.message);
-                        location.reload();
-                    }else{
-                        alert("请求失败");
-                    }
-                }
-            });
-        }
-    });
-</script>
 </body>
 
 </html>

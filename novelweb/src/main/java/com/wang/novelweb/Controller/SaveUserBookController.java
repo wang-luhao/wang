@@ -39,28 +39,8 @@ public class SaveUserBookController {
         Map<String,Object> resultMap = new HashMap<>();
         Integer userId = userService.findUserId(username);
         resultMap.put("username",username);
-        resultMap.put("saveUserBookLists",saveUserBookService.saveUserBookLists(userId));
+        resultMap.put("saveUserBookLists",saveUserBookService.selectSaveBooks(userId));
         return resultMap;
     }
-
-    /**
-     * 信息
-     */
-
-
-    /**
-     * 保存
-     */
-
-
-    /**
-     * 修改
-     */
-
-
-    /**
-     * 删除
-     */
-
 
 }

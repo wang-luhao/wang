@@ -18,17 +18,17 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 @Log4j
-@RestController
+@Controller
 @RequestMapping("/book")
 public class BookController {
 
     private BookService bookService;
     private ChapterService chapterService;
-    private UserService userService;
     private SaveUserBookService saveUserBookService;
     @Autowired
     public void setBookService(BookService bookService) {
@@ -37,10 +37,6 @@ public class BookController {
     @Autowired
     public void setChapterService(ChapterService chapterService) {
         this.chapterService = chapterService;
-    }
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
     @Autowired
     public void setSaveUserBookService(SaveUserBookService saveUserBookService) {
@@ -52,7 +48,6 @@ public class BookController {
      */
     @ResponseBody
     @RequestMapping(value = "bookListsAll", method = RequestMethod.GET)
-    @RequiresPermissions("user1")
     public Map bookLists(){
         Map<String,Object> resultMap = new HashMap<>();
         List<BookEntity> bookLists = bookService.bookLists();
@@ -61,7 +56,6 @@ public class BookController {
     }
     @ResponseBody
     @RequestMapping(value = "bookLists", method = RequestMethod.GET)
-    @RequiresPermissions("user")
     public Map bookLists(Integer pageNum,Integer pageSize){
         Map<String,Object> resultMap = new HashMap<>();
         int bookCount = bookService.bookCount();
@@ -75,14 +69,24 @@ public class BookController {
     }
 
     @ResponseBody
-    @RequestMapping("bookInfo")
-    @RequiresPermissions("user")
+    @RequestMapping("ajaxBookInfo")
     public Map bookInfo(Integer bookId){
         UserEntity user = (UserEntity)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
         Map<String,Object> resultMap = new HashMap<>();
         resultMap.put("bookInfo",bookService.bookInfoById(bookId));
         resultMap.put("bookChapters",chapterService.chapterLists(bookId));
+        log.info(bookId +"::::::" +user.toString());
         resultMap.put("bookIsSave", saveUserBookService.selectIsSave(bookId,user.getId()));
         return resultMap;
     }
+    //@ResponseBody
+    @RequestMapping(value = "bookInfo",method = RequestMethod.GET)
+    public String bookInfo(Integer bookId,Map<String,Object> map){
+        UserEntity user = (UserEntity)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        map.put("bookInfo",bookService.bookInfoById(bookId));
+        map.put("bookChapters",chapterService.chapterLists(bookId));
+        map.put("bookIsSave", saveUserBookService.selectIsSave(bookId,user.getId()));
+        return "bookInfo";
+    }
+
 }

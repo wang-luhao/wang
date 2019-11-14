@@ -12,12 +12,18 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 
@@ -25,7 +31,6 @@ import java.util.*;
 @Log4j
 @Controller
 public class LoginController {
-
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -91,36 +96,40 @@ public class LoginController {
     }
 
 
-    @ApiOperation(value = "描述接口作用", notes = "对接口的额外说明", response = String.class)
+    //@ApiOperation(value = "描述接口作用", notes = "对接口的额外说明", response = String.class)
     @RequestMapping(value = "/login.action", method = RequestMethod.POST)
-    public String LoginAction(String username, String password, Map<String, Object> map) {
+    public String LoginAction(String username, String password, RedirectAttributes redirectAttributes) {
         if (username == null || password == null) {
             return "login";
         }
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject currentUser = SecurityUtils.getSubject();
+        redirectAttributes.addFlashAttribute("username",username);
         try {
             currentUser.login(token);
         } catch (IncorrectCredentialsException ice) {
             log.info(username+":"+"密码不正确");
-            map.put("msg", "密码不正确");
-            return "login";
+            redirectAttributes.addFlashAttribute("msg", "密码不正确");
+            return "redirect:login";
         } catch (UnknownAccountException uae) {
            log.info(username+":"+"账号不存在");
-            map.put("msg", "账号不存在");
-            return "login";
+            redirectAttributes.addFlashAttribute("msg", "账号不存在");
+            return "redirect:login";
         } catch (AuthenticationException ae) {
             log.info(username+":"+"状态不正常");
-            map.put("msg", "状态不正常");
-            return "login";
+            redirectAttributes.addFlashAttribute("msg", "状态不正常");
+            return "redirect:login";
         }
-        log.info("密码正确");
-        map.put("username",username);
+        log.info(username+"登录成功");
         Session session = currentUser.getSession();
-        session.setAttribute("user", username);
+        session.setAttribute("username", username);
         return "index";
     }
 
+    @RequestMapping("403")
+    public String page_403(){
+        return "403";
+    }
     @RequestMapping("logout")
     public String logout() {
         return "login";

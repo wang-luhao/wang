@@ -31,6 +31,7 @@ public class UserRealm extends AuthorizingRealm {
         }
         String username = (String) token.getPrincipal();
         UserEntity userEntity = UserService.findUser(username);
+
         if (userEntity == null) {
             return null;
         }

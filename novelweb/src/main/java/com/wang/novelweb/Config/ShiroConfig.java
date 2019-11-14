@@ -132,6 +132,7 @@ public class ShiroConfig {
         filterChainMap.put("/login.action", "anon");
         filterChainMap.put("/random", "anon");
         filterChainMap.put("/book/**", "anon");
+        filterChainMap.put("/403", "anon");
         //filterChainMap.put("/saveUserBook/**", "anon");
         filterChainMap.put("/**", "authc");
 

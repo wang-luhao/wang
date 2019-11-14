@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:if="${session.get('username') != null }" th:text="首页+${session.get('username')}">首页</title>
+    <title th:text="首页+${session.get('username')!=null?session.get('username'):''}">首页</title>
     <script type="text/javascript" src="../lib/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
     <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
@@ -13,7 +13,9 @@
 
 </style>
 <body>
-<a  href="/user/userInfo" th:text="用户+${session.get('username')}">用户</a>
+<div th:if="${session.get('username')} != null">
+    <a  href="/user/userInfo" th:text="用户+${session.get('username')}">用户</a>
+</div>
 <div class="mt-20">
     <table class="table table-border table-bordered table-hover table-bg table-sort">
         <thead>

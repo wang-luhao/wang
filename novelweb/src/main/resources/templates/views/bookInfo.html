@@ -8,7 +8,7 @@
     <label th:text="${bookInfo.getName()}"></label>
     <label th:text="${bookInfo.getImageUrl()}"></label>
     <label th:text="${bookInfo.getAuthor()}"></label>
-    <label th:text="${bookInfo.getUpdateTime()}"></label>
+    <label th:text="${#dates.format(bookInfo.getUpdateTime(), 'yyyy-MM-dd')}"></label>
     <label th:text="${bookIsSave}"></label>
     <ul th:each="bookChapter:${bookChapters}">
         <li th:text="${bookChapter['name']}">...</li>

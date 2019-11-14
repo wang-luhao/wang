@@ -17,7 +17,7 @@
     <li th:text="${saveBook['imageUrl']}">...</li>
     <li th:text="${saveBook['author']}">...</li>
     <li th:text="${saveBook['category']}">...</li>
-    <li th:text="${saveBook['updateTime']}">...</li>
+    <li th:text="${#dates.format(saveBook['updateTime'], 'yyyy-MM-dd')}">...</li>
 </ul>
 </body>
 </html>

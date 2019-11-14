@@ -78,10 +78,10 @@ public class ShiroConfig {
      * 自定义记住我过滤器
      */
 
-    @Bean
-    public MyRememberFilter myRememberFilter(){
-        return new MyRememberFilter();
-    }
+//    @Bean
+//    public MyRememberFilter myRememberFilter(){
+//        return new MyRememberFilter();
+//    }
 
     /**
      * 配置核心安全管理器
@@ -121,8 +121,9 @@ public class ShiroConfig {
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, Filter> filterMap=new LinkedHashMap<>();
-        filterMap.put("MyRememberFilter",myRememberFilter());
+//        Map<String, Filter> filterMap=new LinkedHashMap<>();
+//        filterMap.put("MyRememberFilter",myRememberFilter());
+
         //拦截
         Map<String, String> filterChainMap = new LinkedHashMap<>();
         filterChainMap.put("/logout", "logout");
@@ -133,6 +134,7 @@ public class ShiroConfig {
         filterChainMap.put("/random", "anon");
         filterChainMap.put("/book/**", "anon");
         filterChainMap.put("/403", "anon");
+        filterChainMap.put("/index", "anon");
         //filterChainMap.put("/saveUserBook/**", "anon");
         filterChainMap.put("/**", "authc");
 

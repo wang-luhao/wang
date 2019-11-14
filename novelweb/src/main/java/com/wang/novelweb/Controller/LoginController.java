@@ -43,6 +43,12 @@ public class LoginController {
         return "index";
     }
 
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String toIndex() {
+        return "index";
+    }
+
+
 
     @RequestMapping(value = "/random", method = RequestMethod.POST)
     @ResponseBody

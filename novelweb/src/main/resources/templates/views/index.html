@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title th:text="首页+${session.get('username')}">首页</title>
+    <title th:if="${session.get('username') != null }" th:text="首页+${session.get('username')}">首页</title>
     <script type="text/javascript" src="../lib/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
     <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>

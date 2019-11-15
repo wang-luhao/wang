@@ -2,15 +2,15 @@ package com.wang.novelweb.Config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
-import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -21,7 +21,6 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
-import javax.servlet.Filter;
 
 @Configuration
 public class ShiroConfig {
@@ -50,9 +49,42 @@ public class ShiroConfig {
      * 缓存验证器
      */
     @Bean
-    public CacheManager cacheManager(){
-        return new MemoryConstrainedCacheManager();
+    public RedisCacheManager cacheManager(){
+        RedisCacheManager redisCacheManager = new RedisCacheManager();
+        redisCacheManager.setRedisManager(redisManager());
+        redisCacheManager.setPrincipalIdFieldName("username");
+        redisCacheManager.setExpire(200000);
+        return redisCacheManager;
     }
+
+    @Bean
+    public RedisManager redisManager() {
+        RedisManager redisManager = new RedisManager();
+        redisManager.setHost("127.0.0.1:6379");
+        // 配置过期时间
+        return redisManager;
+    }
+
+    @Bean
+    public RedisSessionDAO redisSessionDAO() {
+        RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
+        redisSessionDAO.setRedisManager(redisManager());
+        return redisSessionDAO;
+    }
+
+    /**
+     * sessionManager
+     */
+
+    @Bean
+    public SessionManager SessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        sessionManager.setSessionDAO(redisSessionDAO());
+        sessionManager.setCacheManager(cacheManager());
+        sessionManager.setSessionIdUrlRewritingEnabled(false);
+        return sessionManager;
+    }
+
 
     /**
      *记住我Cookie对象参数
@@ -74,7 +106,7 @@ public class ShiroConfig {
         cookieRememberMeManager.setCookie(rememberMeCookie());
         return  cookieRememberMeManager;
     }
-    /**
+    /*
      * 自定义记住我过滤器
      */
 
@@ -86,22 +118,28 @@ public class ShiroConfig {
     /**
      * 配置核心安全管理器
      */
-    @Bean(name = "userRealm")
-    public UserRealm getUserRealm() {
-        return new UserRealm();
+    @Bean(name = "shiroRealm")
+    public UserRealm shiroRealm() {
+        UserRealm userRealm = new UserRealm();
+        userRealm.setCachingEnabled(true);
+        userRealm.setAuthenticationCachingEnabled(true);
+        userRealm.setAuthenticationCacheName("authenticationCache");
+        userRealm.setAuthorizationCachingEnabled(true);
+        userRealm.setAuthorizationCacheName("authorizationCache");
+        return userRealm;
     }
 
     @Bean(name = "securityManager")
-    public SecurityManager securityManager(@Qualifier("userRealm") UserRealm userRealm) {
+    public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //注入自定义myRealm
-        securityManager.setRealm(userRealm);
+        securityManager.setRealm(shiroRealm());
         //注入自定义cacheManager
         securityManager.setCacheManager(cacheManager());
         //注入记住我管理器
         securityManager.setRememberMeManager(rememberMeManager());
         //注入自定义sessionManager
-        //securityManager.setSessionManager(sessionManager());
+        securityManager.setSessionManager(SessionManager());
         return securityManager;
     }
 

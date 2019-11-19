@@ -3,12 +3,10 @@ package com.wang.novelweb.Entity;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 
 @Data
-public class UserEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class UserEntity {
+
     /**
      * 用户id
      */

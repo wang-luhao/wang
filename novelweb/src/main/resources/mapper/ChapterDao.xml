@@ -10,14 +10,20 @@
         <result property="url" column="url"/>
         <result property="bookId" column="book_id"/>
         <result property="updateTime" column="update_time"/>
+        <result property="bookName" column="book_name" />
     </resultMap>
 
     <select id="chapterLists" resultMap="chapterMap" parameterType="integer">
-        select * from chapter where book_id = #{id}
+        select * from novel.chapter where chapter.book_id = #{id}
     </select>
 
     <select id="chapterCount" resultType="integer" parameterType="integer">
-        select count(id) from chapter where book_id = #{id}
+        select count(id) from novel.chapter where book_id = #{id}
     </select>
 
+    <select id="chapter" resultMap="chapterMap" parameterType="integer">
+        select *
+        from novel.chapter where book_id
+
+    </select>
 </mapper>

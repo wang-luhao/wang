@@ -32,19 +32,34 @@ public class ChapterController {
     /**
      * 列表
      */
-    @ResponseBody
+//    @ResponseBody
+//    @RequestMapping("/chapterLists")
+//    public Map chapterLists(Integer id){
+//        Map<String,Object> resultMap = new HashMap<>();
+//        resultMap.put("bookInfo",bookService.bookInfoById(id));
+//        resultMap.put("chapterCount",chapterService.chapterCount(id));
+//        resultMap.put("chapterLists", chapterService.chapterLists(id));
+//        return resultMap;
+//    }
+//
     @RequestMapping("/chapterLists")
-    public Map chapterLists(Integer id){
+    public Map chapterLists(Integer bookId){
         Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("bookInfo",bookService.bookInfoById(id));
-        resultMap.put("chapterCount",chapterService.chapterCount(id));
-        resultMap.put("chapterLists", chapterService.chapterLists(id));
+        resultMap.put("bookInfo",bookService.bookInfoById(bookId));
+        resultMap.put("chapterCount",chapterService.chapterCount(bookId));
+        resultMap.put("chapterLists", chapterService.chapterLists(bookId));
         return resultMap;
     }
 
     /**
-     * 信息
+     * 章节内容
      */
+    @RequestMapping("/chapter")
+    public Map chapter(Integer chapterId){
+        Map<String,Object> resultMap = new HashMap<>();
+        resultMap.put("chapter", chapterService.chapter(chapterId));
+        return resultMap;
+    }
 
     /**
      * 保存

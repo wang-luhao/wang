@@ -24,10 +24,16 @@ public class ChapterEntity implements Serializable {
      * 章节存储位置
      */
     private String url;
+
     /**
-     * 对应的书籍
+     * 对应的书籍id
      */
     private String bookId;
+
+    /**
+     * 对应的书籍名称
+     */
+    private String bookName;
 
     /**
      * 最后更新时间

@@ -12,17 +12,17 @@
         <result property="bookName" column="name"/>
     </resultMap>
     <update id="updateSaveUserBookChapter" parameterType="map">
-        update save_user_book set chapter_id = #{chapterId} where book_id = #{bookId} and user_id = #{userId}
+        update usersavebook set chapter_id = #{chapterId} where book_id = #{bookId} and user_id = #{userId}
 
     </update>
     <update id="updateSaveUserBookIsSave" parameterType="map">
-        update save_user_book set is_save = #{is_save} where book_id = #{bookId} and user_id = #{userId}
+        update usersavebook set is_save = #{is_save} where book_id = #{bookId} and user_id = #{userId}
     </update>
     <select id="selectIsSave" resultType="java.lang.Integer" parameterType="map">
-        select is_save from save_user_book where  book_id = #{bookId} and user_id = #{userId}
+        select is_save from usersavebook where  book_id = #{bookId} and user_id = #{userId}
     </select>
     <select id="selectSaveBooks" resultMap="com.wang.novelweb.Mapper.BookDao.bookMap">
-        select b.* from book b where id in (select s.book_id from save_user_book s where s.is_save = 1 and s.user_id = ${userId})
+        select b.* from book b where id in (select s.book_id from usersavebook s where s.is_save = 1 and s.user_id = ${userId})
     </select>
 
 </mapper>

@@ -59,9 +59,10 @@ public class BookController {
     public Map bookLists(Integer pageNum,Integer pageSize){
         Map<String,Object> resultMap = new HashMap<>();
         int bookCount = bookService.bookCount();
+        int pageCount = bookCount%pageSize==0?(bookCount/pageSize):(bookCount/pageSize+1);
         List<BookEntity> bookLists = bookService.bookLists(pageNum,pageSize);
         resultMap.put("bookCount",bookCount);
-        resultMap.put("pageCount",bookCount/pageSize+1);
+        resultMap.put("pageCount",pageCount);
         resultMap.put("pageNum",pageNum);
         resultMap.put("pageSize",pageSize);
         resultMap.put("bookLists",bookLists);

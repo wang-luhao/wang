@@ -11,4 +11,5 @@ import java.util.List;
 public interface ChapterDao {
     List<ChapterEntity>chapterLists(Integer id);
     Integer chapterCount(Integer id);
+    ChapterEntity chapter(Integer chapterId);
 }

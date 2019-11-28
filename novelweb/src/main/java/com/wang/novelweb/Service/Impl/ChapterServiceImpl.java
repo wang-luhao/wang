@@ -27,4 +27,9 @@ public class ChapterServiceImpl implements ChapterService {
     public Integer chapterCount(Integer id) {
         return chapterDao.chapterCount(id);
     }
+
+    @Override
+    public ChapterEntity chapter(Integer chapterId) {
+        return chapterDao.chapter(chapterId);
+    }
 }

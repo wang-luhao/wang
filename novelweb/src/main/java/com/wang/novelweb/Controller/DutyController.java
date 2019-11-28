@@ -20,9 +20,6 @@ import java.util.*;
 
 public class DutyController {
 
-    //public static void generateExcel(HttpServletResponse response, String fileName, String sheetName, String title,
-    //                                     String[] headers, int[] headersLen, List<List<Object>> listCon) {
-
     private PersonnelService personnelService;
 
     @Autowired

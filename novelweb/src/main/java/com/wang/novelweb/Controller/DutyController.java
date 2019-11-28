@@ -31,7 +31,6 @@ public class DutyController {
     @RequestMapping("exportDuty")
     public Map exportDuty(String startDate, String endDate) {
         List<String> names = personnelService.selectName();
-        log.info(names.size());
         List<String> positions = new ArrayList<>();
         List<Map> maps = new ArrayList<>();
         positions.add("郭总办公室");
@@ -41,7 +40,6 @@ public class DutyController {
         groups.add("二组");
         groups.add("三组");
         groups.add("一组");
-        log.info(positions.size());
         Calendar calendar = Calendar.getInstance();
         Map<String,Object> resultMap = new HashMap<>();
         DateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -52,10 +50,8 @@ public class DutyController {
             List<String> dates = getPerDaysByStartAndEndDate(sDate,eDate,format);
             if (dates != null) {
                 int day = dates.size();
-                log.info("day"+day);
                 int start = 0;
                 int days = (int)((format.parse(dates.get(0)).getTime()-format.parse("20191202").getTime())/nd);
-                log.info("days"+days);
                 int j=3;
                 for(int i = 0; i<days; i++){
                     calendar.setTime(format.parse("20191202"));
@@ -76,7 +72,6 @@ public class DutyController {
                 for(int i = 0; i<day; i++){
                     Map<String,Object> map = new HashMap<>();
                     map.put("日期",dates.get(i));
-                    log.info("日期:"+dates.get(i) +":" + i);
                     calendar.setTime(format.parse(dates.get(i)));
                     if(calendar.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY){
                         map.put("周","周六");
@@ -112,8 +107,6 @@ public class DutyController {
                         positions.remove(0);
                         positions.add(string);
                     }
-                    log.info("开始"+start1);
-                    log.info("结束"+end1);
                     if(end1<start1){
                         List<String> list = new ArrayList<>(names.subList(start1, names.size()));
                         List<String> positionsCopy = new ArrayList<>(positions.subList(0,3));

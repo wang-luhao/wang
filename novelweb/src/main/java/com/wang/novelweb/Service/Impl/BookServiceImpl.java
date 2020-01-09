@@ -15,6 +15,7 @@ import java.util.Map;
 public class BookServiceImpl implements BookService {
 
     private BookDao bookDao;
+
     @Autowired
     public void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
@@ -27,9 +28,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookEntity> bookLists(Integer pageNum, Integer pageSize) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("pageIndex",(pageNum-1)*pageSize);
-        map.put("pageSize",pageSize);
+        Map<String, Object> map = new HashMap<>();
+        map.put("pageIndex", (pageNum - 1) * pageSize);
+        map.put("pageSize", pageSize);
         return bookDao.bookLists(map);
     }
 

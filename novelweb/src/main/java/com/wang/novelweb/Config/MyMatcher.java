@@ -24,7 +24,7 @@ public class MyMatcher extends SimpleCredentialsMatcher {
 
 
     //将传进来的密码进行加密的方法
-    private static String md5(String password){
+    private static String md5(String password) {
         String hashAlgorithmName = "MD5";
         Object salt = ByteSource.Util.bytes("123456");
         int hashIterations = 2;

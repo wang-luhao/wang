@@ -15,7 +15,6 @@
     </resultMap>
 
 
-
     <select id="bookCount" resultType="integer">
         select count(book.id) from book
     </select>

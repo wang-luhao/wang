@@ -9,8 +9,11 @@ import java.util.Map;
 
 public interface SaveUserBookService {
     Integer updateSaveUserBookChapter(Map map);
+
     Integer updateSaveUserBookIsSave(Map map);
-    Integer selectIsSave(Integer bookId,Integer userId);
+
+    Integer selectIsSave(Integer bookId, Integer userId);
+
     List<BookEntity> selectSaveBooks(Integer userId);
 }
 

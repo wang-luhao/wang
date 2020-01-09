@@ -25,10 +25,12 @@ public class ChapterController {
     public void setChapterService(ChapterService chapterService) {
         this.chapterService = chapterService;
     }
+
     @Autowired
     public void setBookService(BookService bookService) {
         this.bookService = bookService;
     }
+
     /**
      * 列表
      */
@@ -43,10 +45,10 @@ public class ChapterController {
 //    }
 //
     @RequestMapping("/chapterLists")
-    public Map chapterLists(Integer bookId){
-        Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("bookInfo",bookService.bookInfoById(bookId));
-        resultMap.put("chapterCount",chapterService.chapterCount(bookId));
+    public Map chapterLists(Integer bookId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("bookInfo", bookService.bookInfoById(bookId));
+        resultMap.put("chapterCount", chapterService.chapterCount(bookId));
         resultMap.put("chapterLists", chapterService.chapterLists(bookId));
         return resultMap;
     }
@@ -55,8 +57,8 @@ public class ChapterController {
      * 章节内容
      */
     @RequestMapping("/chapter")
-    public Map chapter(Integer chapterId){
-        Map<String,Object> resultMap = new HashMap<>();
+    public Map chapter(Integer chapterId) {
+        Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("chapter", chapterService.chapter(chapterId));
         return resultMap;
     }

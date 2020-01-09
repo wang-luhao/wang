@@ -30,14 +30,17 @@ public class BookController {
     private BookService bookService;
     private ChapterService chapterService;
     private SaveUserBookService saveUserBookService;
+
     @Autowired
     public void setBookService(BookService bookService) {
         this.bookService = bookService;
     }
+
     @Autowired
     public void setChapterService(ChapterService chapterService) {
         this.chapterService = chapterService;
     }
+
     @Autowired
     public void setSaveUserBookService(SaveUserBookService saveUserBookService) {
         this.saveUserBookService = saveUserBookService;
@@ -48,45 +51,47 @@ public class BookController {
      */
     @ResponseBody
     @RequestMapping(value = "bookListsAll", method = RequestMethod.GET)
-    public Map bookLists(){
-        Map<String,Object> resultMap = new HashMap<>();
+    public Map bookLists() {
+        Map<String, Object> resultMap = new HashMap<>();
         List<BookEntity> bookLists = bookService.bookLists();
-        resultMap.put("bookLists",bookLists);
+        resultMap.put("bookLists", bookLists);
         return resultMap;
     }
+
     @ResponseBody
     @RequestMapping(value = "bookLists", method = RequestMethod.GET)
-    public Map bookLists(Integer pageNum,Integer pageSize){
-        Map<String,Object> resultMap = new HashMap<>();
+    public Map bookLists(Integer pageNum, Integer pageSize) {
+        Map<String, Object> resultMap = new HashMap<>();
         int bookCount = bookService.bookCount();
-        int pageCount = bookCount%pageSize==0?(bookCount/pageSize):(bookCount/pageSize+1);
-        List<BookEntity> bookLists = bookService.bookLists(pageNum,pageSize);
-        resultMap.put("bookCount",bookCount);
-        resultMap.put("pageCount",pageCount);
-        resultMap.put("pageNum",pageNum);
-        resultMap.put("pageSize",pageSize);
-        resultMap.put("bookLists",bookLists);
+        int pageCount = bookCount % pageSize == 0 ? (bookCount / pageSize) : (bookCount / pageSize + 1);
+        List<BookEntity> bookLists = bookService.bookLists(pageNum, pageSize);
+        resultMap.put("bookCount", bookCount);
+        resultMap.put("pageCount", pageCount);
+        resultMap.put("pageNum", pageNum);
+        resultMap.put("pageSize", pageSize);
+        resultMap.put("bookLists", bookLists);
         return resultMap;
     }
 
     @ResponseBody
     @RequestMapping("ajaxBookInfo")
-    public Map bookInfo(Integer bookId){
-        UserEntity user = (UserEntity)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        Map<String,Object> resultMap = new HashMap<>();
-        resultMap.put("bookInfo",bookService.bookInfoById(bookId));
-        resultMap.put("bookChapters",chapterService.chapterLists(bookId));
-        log.info(bookId +"::::::" +user.toString());
-        resultMap.put("bookIsSave", saveUserBookService.selectIsSave(bookId,user.getId()));
+    public Map bookInfo(Integer bookId) {
+        UserEntity user = (UserEntity) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("bookInfo", bookService.bookInfoById(bookId));
+        resultMap.put("bookChapters", chapterService.chapterLists(bookId));
+        log.info(bookId + "::::::" + user.toString());
+        resultMap.put("bookIsSave", saveUserBookService.selectIsSave(bookId, user.getId()));
         return resultMap;
     }
+
     //@ResponseBody
-    @RequestMapping(value = "bookInfo",method = RequestMethod.GET)
-    public String bookInfo(Integer bookId,Map<String,Object> map){
-        UserEntity user = (UserEntity)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        map.put("bookInfo",bookService.bookInfoById(bookId));
-        map.put("bookChapters",chapterService.chapterLists(bookId));
-        map.put("bookIsSave", saveUserBookService.selectIsSave(bookId,user.getId()));
+    @RequestMapping(value = "bookInfo", method = RequestMethod.GET)
+    public String bookInfo(Integer bookId, Map<String, Object> map) {
+        UserEntity user = (UserEntity) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        map.put("bookInfo", bookService.bookInfoById(bookId));
+        map.put("bookChapters", chapterService.chapterLists(bookId));
+        map.put("bookIsSave", saveUserBookService.selectIsSave(bookId, user.getId()));
         return "bookInfo";
     }
 

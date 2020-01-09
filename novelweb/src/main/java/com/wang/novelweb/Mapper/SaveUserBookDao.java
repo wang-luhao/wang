@@ -12,7 +12,10 @@ import java.util.Map;
 @Repository
 public interface SaveUserBookDao {
     Integer updateSaveUserBookChapter(Map map);
+
     Integer updateSaveUserBookIsSave(Map map);
+
     Integer selectIsSave(Map map);
+
     List<BookEntity> selectSaveBooks(Integer userId);
 }

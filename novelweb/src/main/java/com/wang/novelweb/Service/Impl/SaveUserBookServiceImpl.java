@@ -37,9 +37,9 @@ public class SaveUserBookServiceImpl implements SaveUserBookService {
 
     @Override
     public Integer selectIsSave(Integer bookId, Integer userId) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("bookId",bookId);
-        map.put("userId",userId);
+        Map<String, Object> map = new HashMap<>();
+        map.put("bookId", bookId);
+        map.put("userId", userId);
         return saveUserBookDao.selectIsSave(map);
     }
 

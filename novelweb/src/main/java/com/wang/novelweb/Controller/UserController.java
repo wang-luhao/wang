@@ -19,10 +19,12 @@ public class UserController {
 
     private UserService userService;
     private SaveUserBookService saveUserBookService;
+
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
+
     @Autowired
     public void setSaveUserBookService(SaveUserBookService saveUserBookService) {
         this.saveUserBookService = saveUserBookService;
@@ -32,9 +34,9 @@ public class UserController {
      * 信息
      */
     @RequestMapping("userInfo")
-    public String userInfo(Map<String,Object> map){
-        UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
-        map.put("user",userEntity);
+    public String userInfo(Map<String, Object> map) {
+        UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipals().getPrimaryPrincipal();
+        map.put("user", userEntity);
         map.put("saveBooks", saveUserBookService.selectSaveBooks(userEntity.getId()));
         return "userInfo";
     }

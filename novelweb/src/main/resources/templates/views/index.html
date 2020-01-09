@@ -14,7 +14,7 @@
 </style>
 <body>
 <div th:if="${session.get('username')} != null">
-    <a  href="/user/userInfo" th:text="用户+${session.get('username')}">用户</a>
+    <a href="/user/userInfo" th:text="用户+${session.get('username')}">用户</a>
 </div>
 <div class="mt-20">
     <table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -61,15 +61,16 @@
     $(function () {
         to_page(1);
     });
+
     function to_page(pn) {
         $.ajax({
-            url : "/book/bookLists",
-            data : {
-                pageNum:pn,
-                pageSize:2
+            url: "/book/bookLists",
+            data: {
+                pageNum: pn,
+                pageSize: 2
             },
-            type : "GET",
-            success : function(result) {
+            type: "GET",
+            success: function (result) {
                 //console.log(result);
                 showBookList(result);
                 buildPage(result);
@@ -77,6 +78,7 @@
         })
 
     }
+
     function showBookList(data) {
         let obj = eval(data);
         let list = obj["bookLists"];
@@ -85,14 +87,15 @@
             let str = '/book/bookInfo?bookId=' + values["id"];
             $("#bookLists").append(
                 "<tr><td><input type=\"checkbox\" name=\"\" value=\"\"></th>"
-                +"<td><a href="+str+">"+values["name"]+"</ta></td>"
-                +"<td><a href='#'>"+values["imageUrl"]+"</ta></td>"
-                +"<td>"+values["author"]+"</td>"
-                +"<td>"+values["category"]+"</td>"
-                +"<td>"+values["updateTime"]+"</td></tr>"
+                + "<td><a href=" + str + ">" + values["name"] + "</ta></td>"
+                + "<td><a href='#'>" + values["imageUrl"] + "</ta></td>"
+                + "<td>" + values["author"] + "</td>"
+                + "<td>" + values["category"] + "</td>"
+                + "<td>" + values["updateTime"] + "</td></tr>"
             );
         });
     }
+
     function buildPage(data) {
         let obj = eval(data);
         let pageCount = obj["pageCount"];
@@ -107,32 +110,32 @@
         lastPage.unbind('click').click(function () {
             to_page(pageCount);
         });
-        if (pageNum-1<1){
+        if (pageNum - 1 < 1) {
             previous.hide();
-        }else {
+        } else {
             previous.show();
             previous.unbind('click').click(function () {
-                to_page(pageNum-1);
+                to_page(pageNum - 1);
             });
         }
-        if (pageNum+1>pageCount){
+        if (pageNum + 1 > pageCount) {
             next.hide();
-        }else {
+        } else {
             next.show();
             next.unbind('click').click(function () {
-                to_page(pageNum+1);
+                to_page(pageNum + 1);
             });
         }
-        for (let i = 1; i <= 5; i++){
-            let page = $("#page"+i);
+        for (let i = 1; i <= 5; i++) {
+            let page = $("#page" + i);
             page.empty();
-            if (pageNum-3+i > pageCount || pageNum-3+i < 1){
+            if (pageNum - 3 + i > pageCount || pageNum - 3 + i < 1) {
                 page.hide();
-            }else{
+            } else {
                 page.show();
-                page.append($("<a></a>").append(pageNum-3+i).attr("href", "#"));
+                page.append($("<a></a>").append(pageNum - 3 + i).attr("href", "#"));
                 page.unbind('click').click(function () {
-                    to_page(pageNum-3+i);
+                    to_page(pageNum - 3 + i);
                 });
             }
         }

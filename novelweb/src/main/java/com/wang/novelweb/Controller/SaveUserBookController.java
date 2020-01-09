@@ -35,11 +35,11 @@ public class SaveUserBookController {
      */
     @ResponseBody
     @RequestMapping("saveUserBookLists")
-    public Map saveUserBookLists(String username){
-        Map<String,Object> resultMap = new HashMap<>();
+    public Map saveUserBookLists(String username) {
+        Map<String, Object> resultMap = new HashMap<>();
         Integer userId = userService.findUserId(username);
-        resultMap.put("username",username);
-        resultMap.put("saveUserBookLists",saveUserBookService.selectSaveBooks(userId));
+        resultMap.put("username", username);
+        resultMap.put("saveUserBookLists", saveUserBookService.selectSaveBooks(userId));
         return resultMap;
     }
 

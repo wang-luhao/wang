@@ -1,7 +1,6 @@
 package com.wang.novelweb.Controller;
 
 
-
 import io.swagger.annotations.Api;
 import lombok.extern.log4j.Log4j;
 import org.apache.shiro.SecurityUtils;
@@ -43,7 +42,6 @@ public class LoginController {
     }
 
 
-
     @RequestMapping(value = "/random", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> RandomNum() {
@@ -72,26 +70,26 @@ public class LoginController {
         Session session = currentUser.getSession();
         try {
             SecurityUtils.getSubject().login(token);
-        }catch (IncorrectCredentialsException ice) {
+        } catch (IncorrectCredentialsException ice) {
             resultMap.put("status", 500);
             resultMap.put("message", "密码不正确");
-            log.info(username+":"+"密码不正确");
+            log.info(username + ":" + "密码不正确");
             return resultMap;
-        }catch (UnknownAccountException uae) {
+        } catch (UnknownAccountException uae) {
             resultMap.put("status", 500);
-            log.info(username+":"+"账号不存在");
+            log.info(username + ":" + "账号不存在");
             resultMap.put("message", "账号不存在");
             return resultMap;
         } catch (AuthenticationException ae) {
             resultMap.put("status", 500);
-            log.info(username+":"+"状态不正常");
+            log.info(username + ":" + "状态不正常");
             resultMap.put("message", "状态不正常");
             return resultMap;
         }
         resultMap.put("status", 200);
         resultMap.put("message", "登录成功");
         session.setAttribute("username", username);
-        log.info(username+"登录成功");
+        log.info(username + "登录成功");
         return resultMap;
     }
 
@@ -104,32 +102,33 @@ public class LoginController {
         }
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject currentUser = SecurityUtils.getSubject();
-        redirectAttributes.addFlashAttribute("username",username);
+        redirectAttributes.addFlashAttribute("username", username);
         try {
             currentUser.login(token);
         } catch (IncorrectCredentialsException ice) {
-            log.info(username+":"+"密码不正确");
+            log.info(username + ":" + "密码不正确");
             redirectAttributes.addFlashAttribute("msg", "密码不正确");
             return "redirect:login";
         } catch (UnknownAccountException uae) {
-           log.info(username+":"+"账号不存在");
+            log.info(username + ":" + "账号不存在");
             redirectAttributes.addFlashAttribute("msg", "账号不存在");
             return "redirect:login";
         } catch (AuthenticationException ae) {
-            log.info(username+":"+"状态不正常");
+            log.info(username + ":" + "状态不正常");
             redirectAttributes.addFlashAttribute("msg", "状态不正常");
             return "redirect:login";
         }
-        log.info(username+"登录成功");
+        log.info(username + "登录成功");
         Session session = currentUser.getSession();
         session.setAttribute("username", username);
         return "index";
     }
 
     @RequestMapping("403")
-    public String page_403(){
+    public String page_403() {
         return "403";
     }
+
     @RequestMapping("logout")
     public String logout() {
         return "login";

@@ -7,6 +7,7 @@ public interface UserService {
 
 
     UserEntity findUser(String username);
+
     Integer findUserId(String username);
 }
 

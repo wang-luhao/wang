@@ -40,11 +40,12 @@ public class ShiroConfig {
         resolver.setExceptionMappings(properties);
         return resolver;
     }
+
     /**
      * 密码验证器
      */
     @Bean(name = "credentialsMatcher")
-    public CredentialsMatcher credentialsMatcher(){
+    public CredentialsMatcher credentialsMatcher() {
         return new MyMatcher();
     }
 
@@ -52,7 +53,7 @@ public class ShiroConfig {
      * 缓存验证器
      */
     @Bean
-    public RedisCacheManager cacheManager(){
+    public RedisCacheManager cacheManager() {
         RedisCacheManager redisCacheManager = new RedisCacheManager();
         redisCacheManager.setRedisManager(redisManager());
         redisCacheManager.setPrincipalIdFieldName("username");
@@ -90,9 +91,9 @@ public class ShiroConfig {
 
 
     /**
-     *记住我Cookie对象参数
+     * 记住我Cookie对象参数
      */
-    private SimpleCookie rememberMeCookie(){
+    private SimpleCookie rememberMeCookie() {
         //这个参数是cookie的名称，对应前端的checkbox的name=rememberMe
         SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         //cookie生效时间为10秒
@@ -101,13 +102,13 @@ public class ShiroConfig {
     }
 
     /**
-     *Cookie管理对象
+     * Cookie管理对象
      */
     @Bean
-    public CookieRememberMeManager rememberMeManager(){
+    public CookieRememberMeManager rememberMeManager() {
         CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCookie(rememberMeCookie());
-        return  cookieRememberMeManager;
+        return cookieRememberMeManager;
     }
     /*
      * 自定义记住我过滤器
@@ -169,7 +170,7 @@ public class ShiroConfig {
         Map<String, String> filterChainMap = new LinkedHashMap<>();
         filterChainMap.put("/logout", "logout");
         filterChainMap.put("/lib/**", "anon");
-        filterChainMap.put("/websocket","anon");
+        filterChainMap.put("/websocket", "anon");
         filterChainMap.put("/ajaxLogin", "anon");
         filterChainMap.put("/login.action", "anon");
         filterChainMap.put("/random", "anon");

@@ -13,6 +13,7 @@ import java.util.List;
 public class ChapterServiceImpl implements ChapterService {
 
     private ChapterDao chapterDao;
+
     @Autowired
     public void setChapterDao(ChapterDao chapterDao) {
         this.chapterDao = chapterDao;

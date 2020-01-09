@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2019-11-12
  */
 public class MyRememberFilter extends FormAuthenticationFilter {
-    protected boolean isAccessAllowed(HttpServletRequest request, HttpServletResponse response, Object mappedValue){
-        Subject subject=getSubject(request,response);
-        if(!subject.isAuthenticated() && subject.isRemembered()){
-            if(subject.getSession().getAttribute("username")==null &&subject.getPrincipal()!=null){
-                subject.getSession().setAttribute("username",subject.getPrincipal());
+    protected boolean isAccessAllowed(HttpServletRequest request, HttpServletResponse response, Object mappedValue) {
+        Subject subject = getSubject(request, response);
+        if (!subject.isAuthenticated() && subject.isRemembered()) {
+            if (subject.getSession().getAttribute("username") == null && subject.getPrincipal() != null) {
+                subject.getSession().setAttribute("username", subject.getPrincipal());
             }
 
         }

@@ -12,7 +12,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 
-
 import javax.annotation.Resource;
 
 @Log4j
@@ -25,7 +24,7 @@ public class UserRealm extends AuthorizingRealm {
     //执行认证逻辑
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        if(token.getPrincipal()==null){
+        if (token.getPrincipal() == null) {
             return null;
         }
         String username = (String) token.getPrincipal();
@@ -47,7 +46,7 @@ public class UserRealm extends AuthorizingRealm {
         // TODO Auto-generated method stub
         log.info("授权");
         //获取当前登录用户
-        UserEntity userEntity= (UserEntity) arg0.getPrimaryPrincipal();
+        UserEntity userEntity = (UserEntity) arg0.getPrimaryPrincipal();
 //        String username = (String)arg0.getPrimaryPrincipal();
 //        UserEntity userEntity = UserService.findUser(username);
         //给资源授权
@@ -55,7 +54,6 @@ public class UserRealm extends AuthorizingRealm {
         simpleAuthorizationInfo.addStringPermission(userEntity.getPermission());
         return simpleAuthorizationInfo;
     }
-
 
 
 }

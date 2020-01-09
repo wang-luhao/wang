@@ -5,14 +5,14 @@
     <title th:text="${bookInfo['name']}"></title>
 </head>
 <body>
-    <label th:text="${bookInfo.getName()}"></label>
-    <label th:text="${bookInfo.getImageUrl()}"></label>
-    <label th:text="${bookInfo.getAuthor()}"></label>
-    <label th:text="${#dates.format(bookInfo.getUpdateTime(), 'yyyy-MM-dd')}"></label>
-    <label th:text="${bookIsSave}"></label>
-    <ul th:each="bookChapter:${bookChapters}">
-        <li th:text="${bookChapter['name']}">...</li>
-        <li th:text="${bookChapter['url']}">...</li>
-    </ul>
+<label th:text="${bookInfo.getName()}"></label>
+<label th:text="${bookInfo.getImageUrl()}"></label>
+<label th:text="${bookInfo.getAuthor()}"></label>
+<label th:text="${#dates.format(bookInfo.getUpdateTime(), 'yyyy-MM-dd')}"></label>
+<label th:text="${bookIsSave}"></label>
+<ul th:each="bookChapter:${bookChapters}">
+    <li th:text="${bookChapter['name']}">...</li>
+    <li th:text="${bookChapter['url']}">...</li>
+</ul>
 </body>
 </html>

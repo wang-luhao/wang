@@ -1,0 +1,21 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: client
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:8000/eureka/,http://user:123456@localhost:9000/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: localhost
+info:
+  app:
+    name: amber-cloud-dept-8001
+  company:
+    name: www.wang.com
+  build:
+    artifactId: "@project.artifactId@"
+    version: "@project.version@"

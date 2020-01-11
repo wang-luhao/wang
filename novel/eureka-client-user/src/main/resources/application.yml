@@ -3,7 +3,13 @@ server:
 
 spring:
   application:
-    name: client
+    name: user-client
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/duty
+    password: 123456
+    username: root
+
 eureka:
   client:
     service-url:
@@ -11,9 +17,11 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: localhost
+    virtual-host-name: user-client
 info:
   app:
-    name: amber-cloud-dept-8001
+    name: eureka-client-user-8001
+    virtual-host-name: user-client
   company:
     name: www.wang.com
   build:

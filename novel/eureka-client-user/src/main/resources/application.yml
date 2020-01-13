@@ -1,6 +1,3 @@
-server:
-  port: 8001
-
 spring:
   application:
     name: user-client
@@ -27,3 +24,15 @@ info:
   build:
     artifactId: "@project.artifactId@"
     version: "@project.version@"
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+---
+spring:
+  profiles: peer1
+server:
+  port: 8001
+---
+spring:
+  profiles: peer2
+server:
+  port: 8002

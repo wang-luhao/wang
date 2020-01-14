@@ -6,6 +6,10 @@ spring:
     url: jdbc:mysql://localhost:3306/duty
     password: 123456
     username: root
+  security:
+    user:
+      name: user
+      password: password1
 
 eureka:
   client:

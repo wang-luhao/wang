@@ -14,14 +14,10 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 在/eureka/**端点忽略csrf验证
-        http.csrf().disable();
-//        // 配置使请求需要通过httpBasic或form验证
-//        http.authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .and()
-//                .httpBasic();
+//        http.csrf().disable();
+        http.csrf().ignoringAntMatchers("/eureka/**");
+        // 配置使请求需要通过httpBasic或form验证
+
         super.configure(http);
     }
 }

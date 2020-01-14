@@ -1,6 +1,7 @@
 package com.wang.eurekaclientnovel.controller;
 
 import com.wang.eurekaclientnovel.entity.User;
+import com.wang.eurekaclientnovel.feign.userFeignClient;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,21 +21,28 @@ import org.springframework.web.client.RestTemplate;
 @Log
 public class userController {
 
-    private RestTemplate restTemplate;
+//    private RestTemplate restTemplate;
     private LoadBalancerClient loadBalancerClient;
-    @Autowired
-    public void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+    private userFeignClient userFeignClient;
+//    @Autowired
+//    public void setRestTemplate(RestTemplate restTemplate) {
+//        this.restTemplate = restTemplate;
+//    }
     @Autowired
     public void setLoadBalancerClient(LoadBalancerClient loadBalancerClient) {
         this.loadBalancerClient = loadBalancerClient;
     }
 
+    @Autowired
+    public void setUserFeignClient(com.wang.eurekaclientnovel.feign.userFeignClient userFeignClient) {
+        this.userFeignClient = userFeignClient;
+    }
+
     @ResponseBody
     @GetMapping("/user/{id}")
     public User findUser(@PathVariable Long id) {
-        return this.restTemplate.getForObject("http://user-client/user/"+id,User.class);
+//        return this.restTemplate.getForObject("http://user-client/user/"+id,User.class);
+        return userFeignClient.findUser(id);
     }
 
     @GetMapping("user/info")

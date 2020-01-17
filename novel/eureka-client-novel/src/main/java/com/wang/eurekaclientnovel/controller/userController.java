@@ -1,11 +1,14 @@
 package com.wang.eurekaclientnovel.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
 import com.wang.eurekaclientnovel.entity.User;
 import com.wang.eurekaclientnovel.feign.userFeignClient;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,10 +48,13 @@ public class userController {
         return userFeignClient.findUser(id);
     }
 
+    @ResponseBody
     @GetMapping("user/info")
     public void LogInfo(){
         ServiceInstance serviceInstance = loadBalancerClient.choose("user-client");
         log.info(serviceInstance.getInstanceId()+":"+serviceInstance.getHost()+":"+
                 serviceInstance.getPort());
     }
+
+
 }

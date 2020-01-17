@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Data
 public class User implements Serializable {
-    private String userid;
+    private Long userid;
 
     private String username;
 

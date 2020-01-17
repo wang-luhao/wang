@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: novel-client
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     service-url:
@@ -21,3 +26,10 @@ info:
   build:
     artifactId: "@project.artifactId@"
     version: "@project.version@"
+management:
+  endpoint:
+    health:
+      show-details: always
+feign:
+  hystrix:
+    enabled: true

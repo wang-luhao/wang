@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: turbine-dashboard
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+#        spring.cloud.stream.bindings.turbineStreamInput.destination=sixfly
+eureka:
+  client:
+    service-url:
+      defaultZone: http://user:123456@localhost:8000/eureka/
+  instance:
+    prefer-ip-address: true
+server:
+  port: 8031
